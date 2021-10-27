@@ -5,7 +5,7 @@ const app = express()
 
 app.use(express.json())
 
-app.get("/inital", (req, res) => {
+app.get("/initial", (req, res) => {
     res.json({message: "Hello wolrd"})
 })
 
