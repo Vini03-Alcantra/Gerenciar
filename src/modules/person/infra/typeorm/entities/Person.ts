@@ -6,7 +6,7 @@ class Person {
     @PrimaryColumn({generated: "uuid"})
     id: string;
 
-    @Column({name: "nome_person"})
+    @Column({name: "nome_pessoa"})
     nomePerson: string;
     
     @Column({name: "idade_pessoa"})

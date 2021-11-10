@@ -1,5 +1,5 @@
-import { ICreatePersonDTO } from "@modules/person/dtos/ICreatePersonDTO";
-import { IPersonRepository } from "@modules/person/repositories/IPersonRepository";
+import { ICreatePersonDTO } from "modules/person/dtos/ICreatePersonDTO";
+import { IPersonRepository } from "modules/person/repositories/IPersonRepository";
 import { getRepository, Repository } from "typeorm";
 import { Person } from "../entities/Person";
 
@@ -19,7 +19,7 @@ class PersonsRepository implements IPersonRepository {
         const person = this.repository.create({
             nomePerson: nomePerson, 
             idadePerson: idadePerson,
-            emailPerson,            
+            emailPerson: emailPerson,            
             id: id
         })
 
