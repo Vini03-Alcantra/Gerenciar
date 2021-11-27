@@ -1,4 +1,5 @@
 import { ICreatePersonDTO } from "modules/person/dtos/ICreatePersonDTO";
+import { Person } from "modules/person/infra/typeorm/entities/Person";
 import { IPersonRepository } from "modules/person/repositories/IPersonRepository";
 import { inject, injectable } from "tsyringe";
 
@@ -9,14 +10,18 @@ class CreatePersonUseCase {
         private personsRepository: IPersonRepository
     ){}
 
-    async execute({nomePerson, idadePerson, emailPerson}: ICreatePersonDTO): Promise<void>{
+    async execute({
+        nomePerson,
+        idadePerson,
+        emailPerson
+    }: ICreatePersonDTO): Promise<Person>{
         const persons = await this.personsRepository.create({
             nomePerson, 
             idadePerson, 
             emailPerson  
         })
 
-        console.log(persons)
+        return persons
     }
 }
 

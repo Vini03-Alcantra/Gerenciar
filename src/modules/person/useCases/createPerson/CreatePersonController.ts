@@ -6,15 +6,17 @@ class CreatePersonController {
         try {
             const {nomePerson, idadePerson, emailPerson} = req.body
             
-            const createPersonUseCase = container.resolve(CreatePersonUseCase)
+            const createPersonUseCase = container.resolve(
+                CreatePersonUseCase
+            )
 
             const person = await createPersonUseCase.execute({
                 nomePerson,
                 idadePerson,
                 emailPerson
             })
-            console.log(person)
-            return res.status(201).json({msg: person})
+            
+            return res.status(201).json(person)
         } catch (err) {
             return res.status(500).json(err.message)
         }

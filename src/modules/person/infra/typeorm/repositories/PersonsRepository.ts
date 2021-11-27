@@ -15,7 +15,7 @@ class PersonsRepository implements IPersonRepository {
         idadePerson,
         emailPerson,
         id
-    }: ICreatePersonDTO): Promise<void> {
+    }: ICreatePersonDTO): Promise<Person> {
         const person = this.repository.create({
             nomePerson: nomePerson, 
             idadePerson: idadePerson,
@@ -24,6 +24,8 @@ class PersonsRepository implements IPersonRepository {
         })
 
         await this.repository.save(person)
+
+        return person
     }
 
 }

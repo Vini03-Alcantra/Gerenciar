@@ -15,9 +15,6 @@ class Person {
     @Column({name: "email_pessoa"})
     emailPerson: string;
 
-    @CreateDateColumn({name: "date_start"})
-    dateStart: Date;
-
     constructor(){
         if(!this.id){
             this.id = uuidV4()
