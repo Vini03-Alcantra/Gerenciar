@@ -18,7 +18,7 @@ class AccountsConstantRepository implements IAccountsConstantRepository {
         const accountConstant = this.repository.create({
             nameOriginAccount,
             valueAccount,
-            person_id: idPerson,
+            id_person: idPerson,
             dateAccount: new Date()
         })    
 

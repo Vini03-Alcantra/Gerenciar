@@ -6,7 +6,7 @@ class CreateAccountConstantController {
     async handle(req: Request, res: Response): Promise<Response>{
         try {
             const {nameOriginAccount, valueAccount, idPerson} = req.body;
-            
+            console.log(nameOriginAccount, valueAccount, idPerson)
             const createAccountConstantUseCase = container.resolve(CreateAccountConstantUseCase)
 
             const accountConstant = await createAccountConstantUseCase.execute({

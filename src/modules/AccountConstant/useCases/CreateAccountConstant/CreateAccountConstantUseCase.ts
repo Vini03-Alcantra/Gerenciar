@@ -5,7 +5,7 @@ import { inject, injectable } from "tsyringe";
 @injectable()
 class CreateAccountConstantUseCase {
     constructor(
-        @inject("AccountConstantsRepository")
+        @inject("AccountsConstantRepository")
         private accountsConstantRepository: IAccountsConstantRepository
     ){}
 

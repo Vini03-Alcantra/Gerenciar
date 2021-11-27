@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn, TableColumn } from "typeorm";
+import { AccountConstant } from "modules/AccountConstant/infra/typeorm/entities/AccountConstant";
+import { Column, CreateDateColumn, Entity, OneToOne, PrimaryColumn, TableColumn } from "typeorm";
 import {v4 as uuidV4} from "uuid"
 
 @Entity("person")

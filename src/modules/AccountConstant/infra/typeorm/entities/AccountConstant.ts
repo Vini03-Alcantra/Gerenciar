@@ -16,9 +16,9 @@ class AccountConstant {
     @Column({name: "data_conta"})
     dateAccount: Date;
 
-    @OneToOne(() => Person)
-    @JoinColumn()
-    person_id: Person;
+    @OneToOne(type => Person, accountConstant => AccountConstant)        
+    @Column()
+    id_person: string
 
     constructor(){
         if(!this.id){
