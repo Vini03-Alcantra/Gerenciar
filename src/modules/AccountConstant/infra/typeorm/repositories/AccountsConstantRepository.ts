@@ -14,7 +14,7 @@ class AccountsConstantRepository implements IAccountsConstantRepository {
         nameOriginAccount,
         valueAccount, 
         idPerson
-    }: ICreateAccountConstantDTO): Promise<void> {
+    }: ICreateAccountConstantDTO): Promise<AccountConstant> {
         const accountConstant = this.repository.create({
             nameOriginAccount,
             valueAccount,
@@ -23,6 +23,8 @@ class AccountsConstantRepository implements IAccountsConstantRepository {
         })    
 
         await this.repository.save(accountConstant)
+
+        return accountConstant
     }
 
 }
