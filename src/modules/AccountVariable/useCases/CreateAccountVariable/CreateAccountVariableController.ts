@@ -31,3 +31,5 @@ class CreateAccountVariableController {
         }
     }
 }
+
+export {CreateAccountVariableController}

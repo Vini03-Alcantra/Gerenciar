@@ -4,6 +4,8 @@ import { IPersonRepository } from "../../modules/person/repositories/IPersonRepo
 import { PersonsRepository } from "../../modules/person/infra/typeorm/repositories/PersonsRepository";
 import { AccountsConstantRepository } from "../../modules/AccountConstant/infra/typeorm/repositories/AccountsConstantRepository";
 import { IAccountsConstantRepository } from "../../modules/AccountConstant/repositories/IAccountsConstantRepository";
+import { IAccountsVariableRepository } from "modules/AccountVariable/repositories/IAccountsVariableRepository";
+import { AccountsVariableRepository } from "modules/AccountVariable/infra/typeorm/repositories/AccountsVariableRepository";
 
 container.registerSingleton<IPersonRepository>(
     "PersonsRepository",
@@ -13,4 +15,9 @@ container.registerSingleton<IPersonRepository>(
 container.registerSingleton<IAccountsConstantRepository>(
     "AccountsConstantRepository",
     AccountsConstantRepository
+)
+
+container.registerSingleton<IAccountsVariableRepository>(
+    "AccountsConstantRepository",
+    AccountsVariableRepository
 )
