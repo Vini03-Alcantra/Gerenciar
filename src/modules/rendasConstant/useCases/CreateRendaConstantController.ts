@@ -13,14 +13,14 @@ class CreateRendaContantController {
             )
 
             const rendaConstant = await createRendaConstantUseCase.execute({
-                origemRenda, 
+                originRenda: origemRenda, 
                 valorRenda, 
-                id_person
+                idPerson: id_person
             })
 
-            return res.status(201).json({rendaConstant})
+            return res.status(201).json(rendaConstant)
         } catch (err) {
-            return res.status(500).json({msg: err.message})
+            return res.status(500).json(err.message)
         }
     }
 }

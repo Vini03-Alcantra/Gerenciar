@@ -4,6 +4,7 @@ import "reflect-metadata"
 import { accountRouter } from "./account_constant.routes";
 import { accountVariableRouter } from "./account_variables.routes";
 import { personRouter } from "./person.routes";
+import { rendaConstant } from "./renda_constant.routes";
 
 
 const router = Router()
@@ -11,6 +12,6 @@ const router = Router()
 router.use("/person", personRouter)
 router.use("/accountConstant", accountRouter)
 router.use("/accountVariable", accountVariableRouter)
-
+router.use("/rendaConstant", rendaConstant)
 
 export {router}
