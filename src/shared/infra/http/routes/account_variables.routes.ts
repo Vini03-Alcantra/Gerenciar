@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { CreateAccountVariableController } from "modules/AccountVariable/useCases/CreateAccountVariable/CreateAccountVariableController";
+import { CreateAccountVariableController } from "../../../../modules/AccountVariable/useCases/CreateAccountVariable/CreateAccountVariableController";
 
 const accountVariableRouter = Router()
 

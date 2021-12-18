@@ -4,8 +4,12 @@ import { IPersonRepository } from "../../modules/person/repositories/IPersonRepo
 import { PersonsRepository } from "../../modules/person/infra/typeorm/repositories/PersonsRepository";
 import { AccountsConstantRepository } from "../../modules/AccountConstant/infra/typeorm/repositories/AccountsConstantRepository";
 import { IAccountsConstantRepository } from "../../modules/AccountConstant/repositories/IAccountsConstantRepository";
-import { IAccountsVariableRepository } from "modules/AccountVariable/repositories/IAccountsVariableRepository";
-import { AccountsVariableRepository } from "modules/AccountVariable/infra/typeorm/repositories/AccountsVariableRepository";
+import { IAccountsVariableRepository } from "../../modules/AccountVariable/repositories/IAccountsVariableRepository";
+import { AccountsVariableRepository } from "../../modules/AccountVariable/infra/typeorm/repositories/AccountsVariableRepository";
+import { IRendasVariableRepository } from "../../modules/rendasVariable/repositories/IRendasVariablesConstant";
+import { RendasVariableRepository } from "../../modules/rendasVariable/infra/typeorm/repositories/RendasRepository";
+import { IRendaConstantRepository } from "../../modules/rendasConstant/repositories/IRendaConstantRepository";
+import { RendaConstantRepository } from "../../modules/rendasConstant/infra/typeorm/repositories/RendaConstantRepository";
 
 container.registerSingleton<IPersonRepository>(
     "PersonsRepository",
@@ -18,6 +22,16 @@ container.registerSingleton<IAccountsConstantRepository>(
 )
 
 container.registerSingleton<IAccountsVariableRepository>(
-    "AccountsConstantRepository",
+    "AccountsVariableRepository",
     AccountsVariableRepository
+)
+
+container.registerSingleton<IRendasVariableRepository>(
+    "RendaVariableUseCase",
+    RendasVariableRepository
+)
+
+container.registerSingleton<IRendaConstantRepository>(
+    "RendaConstantRepository",
+    RendaConstantRepository
 )

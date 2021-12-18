@@ -16,6 +16,7 @@ class AccountsVariableRepository implements IAccountsVariableRepository {
         nomeOrigemConta, 
         valorConta, 
         tipoConta, 
+        dataConta,
         formaPagamento, 
         contaPlanejada, 
         idPerson
@@ -24,7 +25,7 @@ class AccountsVariableRepository implements IAccountsVariableRepository {
             nomeOrigemConta,
             valorConta,
             tipoConta,
-            dataConta: new Date(),
+            dataConta,
             formaPagamento,
             contaPlanejada,
             idPerson

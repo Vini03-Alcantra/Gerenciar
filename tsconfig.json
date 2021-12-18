@@ -4,7 +4,11 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "module": "commonjs", 
-    "baseUrl": "./src",                
+    "baseUrl": "./src",   
+    "paths": {
+      "@modules/*":["modules/*"],
+      "@shared/*":["shared/*"]
+    },             
     "resolveJsonModule": true,              
     "esModuleInterop": true,                
     "forceConsistentCasingInFileNames": true,

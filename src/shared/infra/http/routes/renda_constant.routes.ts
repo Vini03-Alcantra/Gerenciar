@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { CreateRendaContantController } from "modules/rendasConstant/useCases/CreateRendaConstantController";
+import { CreateRendaContantController } from "../../../../modules/rendasConstant/useCases/CreateRendaConstantController";
 
 const rendaConstant = Router()
 

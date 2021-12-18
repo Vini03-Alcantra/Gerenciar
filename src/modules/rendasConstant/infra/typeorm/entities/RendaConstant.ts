@@ -1,5 +1,5 @@
-import { AccountVariable } from "modules/AccountVariable/infra/typeorm/entities/AccountVariable";
-import { Person } from "modules/person/infra/typeorm/entities/Person";
+
+import { Person } from "../../../../person/infra/typeorm/entities/Person";
 import { Column, ManyToOne, OneToOne, PrimaryColumn } from "typeorm";
 import {v4 as uuidV4} from "uuid"
 
@@ -16,7 +16,7 @@ class RendaConstant {
     @Column({name: "data_renda"})
     dataRenda: Date;
     
-    @ManyToOne(type => Person, accountVariable => AccountVariable)
+    @ManyToOne(type => Person, rendaConstant => RendaConstant)
     @Column()
     id_person: string
 

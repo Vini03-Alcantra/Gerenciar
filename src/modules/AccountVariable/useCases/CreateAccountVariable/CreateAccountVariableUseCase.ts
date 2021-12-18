@@ -7,7 +7,7 @@ import {IAccountsVariableRepository} from "modules/AccountVariable/repositories/
 @injectable()
 class CreateAccountVariableUseCase {
     constructor(
-        @inject("AccountsConstantRepository")
+        @inject("AccountsVariableRepository")
         private accountVariableRepository: IAccountsVariableRepository
     ){}
 
@@ -15,6 +15,7 @@ class CreateAccountVariableUseCase {
         nomeOrigemConta,
         valorConta,
         tipoConta,
+        dataConta,
         formaPagamento,
         contaPlanejada,
         idPerson
@@ -23,6 +24,7 @@ class CreateAccountVariableUseCase {
             nomeOrigemConta,
             valorConta,
             tipoConta,
+            dataConta,
             formaPagamento,
             contaPlanejada,
             idPerson
