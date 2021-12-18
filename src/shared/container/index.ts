@@ -6,7 +6,7 @@ import { AccountsConstantRepository } from "../../modules/AccountConstant/infra/
 import { IAccountsConstantRepository } from "../../modules/AccountConstant/repositories/IAccountsConstantRepository";
 import { IAccountsVariableRepository } from "../../modules/AccountVariable/repositories/IAccountsVariableRepository";
 import { AccountsVariableRepository } from "../../modules/AccountVariable/infra/typeorm/repositories/AccountsVariableRepository";
-import { IRendasVariableRepository } from "../../modules/rendasVariable/repositories/IRendasVariablesConstant";
+import { IRendasVariableRepository } from "../../modules/rendasVariable/repositories/IRendasVariables";
 import { RendasVariableRepository } from "../../modules/rendasVariable/infra/typeorm/repositories/RendasRepository";
 import { IRendaConstantRepository } from "../../modules/rendasConstant/repositories/IRendaConstantRepository";
 import { RendaConstantRepository } from "../../modules/rendasConstant/infra/typeorm/repositories/RendaConstantRepository";

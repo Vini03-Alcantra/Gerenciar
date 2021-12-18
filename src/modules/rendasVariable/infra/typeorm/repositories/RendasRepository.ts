@@ -1,5 +1,5 @@
 import { ICreateRendaVariableDTO } from "modules/rendasVariable/dtos/ICreateRendaVariableDTO";
-import { IRendasVariableRepository } from "modules/rendasVariable/repositories/IRendasVariablesConstant";
+import { IRendasVariableRepository } from "@modules/rendasVariable/repositories/IRendasVariables";
 import { getRepository, Repository } from "typeorm";
 import { RendaVariavel } from "../entities/RendaVariavel";
 
