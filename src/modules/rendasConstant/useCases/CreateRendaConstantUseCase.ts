@@ -5,16 +5,24 @@ import { IRendaConstantRepository } from "../repositories/IRendaConstantReposito
 
 @injectable()
 class CreateRendaConstantUseCase {
+    
     constructor(
         @inject("RendaConstantRepository")
         private rendaConstantRepository: IRendaConstantRepository
     ){}
 
-    async execute({originRenda, valorRenda, idPerson}: ICreateRendaConstantDTO): Promise<RendaConstant>{
+    async execute({
+        originRenda, 
+        valorRenda, 
+        dataRenda,
+        id_person
+    }: ICreateRendaConstantDTO): Promise<RendaConstant>{
+        console.log("Paulce Cesar Baruk")
         const rendaConstant = await this.rendaConstantRepository.create({
             originRenda,
             valorRenda,
-            idPerson
+            dataRenda,
+            id_person
         })
 
         return rendaConstant

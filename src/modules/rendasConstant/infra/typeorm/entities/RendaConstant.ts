@@ -1,10 +1,11 @@
 
 import { Person } from "../../../../person/infra/typeorm/entities/Person";
-import { Column, ManyToOne, OneToOne, PrimaryColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToOne, PrimaryColumn } from "typeorm";
 import {v4 as uuidV4} from "uuid"
 
+@Entity("renda_fixa")
 class RendaConstant {
-    @PrimaryColumn({generated: true})
+    @PrimaryColumn({generated: "uuid"})
     id: string;
 
     @Column({name: "origem_renda"})
@@ -16,8 +17,7 @@ class RendaConstant {
     @Column({name: "data_renda"})
     dataRenda: Date;
     
-    @ManyToOne(type => Person, rendaConstant => RendaConstant)
-    @Column()
+    @Column({name: "id_person"})
     id_person: string
 
     constructor(){

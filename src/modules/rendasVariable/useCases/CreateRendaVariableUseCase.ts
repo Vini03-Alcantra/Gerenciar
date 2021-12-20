@@ -7,7 +7,7 @@ import { IRendasVariableRepository } from "../repositories/IRendasVariables";
 @injectable()
 class CreateRendaVariableUseCase {
     constructor(
-        @inject("RendaVariableUseCase")
+        @inject("RendaVariableRepository")
         private rendaVariableRepository: IRendasVariableRepository
     ){}
 

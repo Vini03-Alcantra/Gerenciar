@@ -27,7 +27,7 @@ container.registerSingleton<IAccountsVariableRepository>(
 )
 
 container.registerSingleton<IRendasVariableRepository>(
-    "RendaVariableUseCase",
+    "RendaVariableRepository",
     RendasVariableRepository
 )
 

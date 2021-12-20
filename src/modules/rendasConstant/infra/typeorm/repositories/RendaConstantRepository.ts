@@ -4,7 +4,7 @@ import { getRepository, Repository } from "typeorm";
 import { RendaConstant } from "../entities/RendaConstant";
 
 class RendaConstantRepository implements IRendaConstantRepository {
-    private repository: Repository<RendaConstant>
+    private repository: Repository<RendaConstant>;
 
     constructor(){
         this.repository = getRepository(RendaConstant)
@@ -13,17 +13,20 @@ class RendaConstantRepository implements IRendaConstantRepository {
     async create({
         originRenda, 
         valorRenda, 
-        idPerson
+        dataRenda,
+        id_person,
+        id
     }: ICreateRendaConstantDTO): Promise<RendaConstant> {
         const rendaConstant = this.repository.create({
             origemRenda: originRenda,
             valorRenda,
-            dataRenda: new Date(),
-            id_person: idPerson
+            dataRenda,
+            id_person
         })
 
-        await this.repository.save(rendaConstant)
+        const res = await this.repository.save(rendaConstant)
 
+        console.log(res)
         return rendaConstant
     }
 }

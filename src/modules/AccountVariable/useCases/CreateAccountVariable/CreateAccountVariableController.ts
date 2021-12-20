@@ -3,10 +3,10 @@ import { container } from "tsyringe";
 import { CreateAccountVariableUseCase } from "./CreateAccountVariableUseCase";
 
 class CreateAccountVariableController {
-    async handle(req: Request, res: Response): Promise<Response>{
+    async handle(req: Request, res: Response): Promise<Response>{        
         try{
             const {nomeOrigemConta, valorConta, tipoConta, dataConta, formaPagamento, contaPlanejada, idPerson} = req.body;
-
+            
             const createAccountVariableUseCase = container.resolve(
                 CreateAccountVariableUseCase
             )

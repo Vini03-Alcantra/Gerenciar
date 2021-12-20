@@ -6,8 +6,8 @@ import { CreateRendaConstantUseCase } from "./CreateRendaConstantUseCase";
 class CreateRendaContantController {
     async handle(req: Request, res: Response): Promise<Response>{
         try {
-            const { origemRenda, valorRenda, id_person} = req.body;
-
+            const { origemRenda, valorRenda, dataRenda, id_person} = req.body;
+            
             const createRendaConstantUseCase = container.resolve(
                 CreateRendaConstantUseCase
             )
@@ -15,7 +15,8 @@ class CreateRendaContantController {
             const rendaConstant = await createRendaConstantUseCase.execute({
                 originRenda: origemRenda, 
                 valorRenda, 
-                idPerson: id_person
+                dataRenda,
+                id_person
             })
 
             return res.status(201).json(rendaConstant)
