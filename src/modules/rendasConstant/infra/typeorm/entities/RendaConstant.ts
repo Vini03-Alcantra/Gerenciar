@@ -1,6 +1,6 @@
 
 import { Person } from "../../../../person/infra/typeorm/entities/Person";
-import { Column, Entity, ManyToOne, OneToOne, PrimaryColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryColumn } from "typeorm";
 import {v4 as uuidV4} from "uuid"
 
 @Entity("renda_fixa")
@@ -17,8 +17,12 @@ class RendaConstant {
     @Column({name: "data_renda"})
     dataRenda: Date;
     
-    @Column({name: "id_person"})
-    id_person: string
+    @Column()
+    id_person: string;
+
+    @ManyToOne(() => Person)
+    @JoinColumn({name: "id_person"})
+    person: Person
 
     constructor(){
         if(!this.id){

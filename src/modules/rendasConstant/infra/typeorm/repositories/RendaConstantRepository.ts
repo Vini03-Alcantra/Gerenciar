@@ -14,8 +14,7 @@ class RendaConstantRepository implements IRendaConstantRepository {
         originRenda, 
         valorRenda, 
         dataRenda,
-        id_person,
-        id
+        id_person
     }: ICreateRendaConstantDTO): Promise<RendaConstant> {
         const rendaConstant = this.repository.create({
             origemRenda: originRenda,
@@ -24,9 +23,8 @@ class RendaConstantRepository implements IRendaConstantRepository {
             id_person
         })
 
-        const res = await this.repository.save(rendaConstant)
-
-        console.log(res)
+        await this.repository.save(rendaConstant)
+        
         return rendaConstant
     }
 }
