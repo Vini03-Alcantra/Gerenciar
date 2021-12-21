@@ -13,8 +13,4 @@ app.use(express.json())
 
 app.use("/", router)
 
-app.get("/home", (req: Request, res: Response) => {
-    res.json({"message": "Não abandone o barco"})
-})
-
 export {app}
