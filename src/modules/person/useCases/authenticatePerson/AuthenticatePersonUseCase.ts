@@ -1,7 +1,9 @@
 import { IPersonRepository } from "@modules/person/repositories/IPersonRepository";
+import auth from "config/auth";
+
 import { inject, injectable } from "tsyringe";
-
-
+import { sign } from "jsonwebtoken";
+import { IDateProvider } from "@shared/container/providers/DateProvider/IDateProvider";
 
 interface IRequest {
     email: string;
@@ -20,12 +22,21 @@ interface IResponse {
 @injectable()
 class AuthenticatePersonUseCase {
     constructor(
-        @inject("PersonRepository")
-        private personsRepository: IPersonRepository
+        @inject("PersonsRepository")
+        private personsRepository: IPersonRepository,
+        @inject("DayjsDateProvider")
+        private dayjsDateProvider: IDateProvider
     ){}
 
     async execute({email, cpf}: IRequest): Promise<IResponse>{
         const user = await this.personsRepository.findByEmail(email)
+        const {
+            expires_in_token, 
+            secret_refresh_token,
+            secret, 
+            expires_in_refresh_token,
+            expires_refresh_token_days
+        } = auth
         
         if(!user){
             throw new Error("Email or password Incorrect")
