@@ -16,6 +16,12 @@ class Person {
     @Column({name: "email_pessoa"})
     emailPerson: string;
 
+    @Column({name: "birthday"})
+    birthday: Date;
+
+    @Column({name: "cpf"})
+    cpf: string;
+
     constructor(){
         if(!this.id){
             this.id = uuidV4()

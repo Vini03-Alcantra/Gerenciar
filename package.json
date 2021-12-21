@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@abraham/reflection": "^0.8.0",
+    "bcrypt": "^5.0.1",
     "core-js": "^3.19.0",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
