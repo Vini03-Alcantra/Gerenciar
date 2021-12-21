@@ -4,6 +4,7 @@ import auth from "config/auth";
 import { inject, injectable } from "tsyringe";
 import { sign } from "jsonwebtoken";
 import { IDateProvider } from "@shared/container/providers/DateProvider/IDateProvider";
+import { IPersonsTokensRepository } from "@modules/person/repositories/IPersonsTokensRepository";
 
 interface IRequest {
     email: string;
@@ -25,7 +26,9 @@ class AuthenticatePersonUseCase {
         @inject("PersonsRepository")
         private personsRepository: IPersonRepository,
         @inject("DayjsDateProvider")
-        private dateProvider: IDateProvider
+        private dateProvider: IDateProvider,
+        @inject("PersonsTokensRepository")
+        private personsTokensRepository: IPersonsTokensRepository
     ){}
 
     async execute({email, cpf}: IRequest): Promise<IResponse>{
@@ -64,7 +67,7 @@ class AuthenticatePersonUseCase {
             expires_refresh_token_days
         )
 
-        await this.usersTokensRepository.create({
+        await this.personsTokensRepository.create({
             person_id: user.id,
             refresh_token,
             expires_date: refresh_token_expires_date
