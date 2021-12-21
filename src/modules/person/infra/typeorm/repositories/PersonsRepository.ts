@@ -9,7 +9,7 @@ class PersonsRepository implements IPersonRepository {
     constructor(){
         this.repository = getRepository(Person)
     }
-
+    
     async create({
         nomePerson, 
         idadePerson,
@@ -24,6 +24,22 @@ class PersonsRepository implements IPersonRepository {
         })
 
         await this.repository.save(person)
+
+        return person
+    }
+
+    async findByEmail(email: string): Promise<Person> {
+        const emailPerson = await this.repository.findOne(
+            {emailPerson: email}
+        )
+
+        return emailPerson
+    }
+
+    async findById(id: string): Promise<Person> {
+        const person = await this.repository.findOne(
+            {id}
+        )
 
         return person
     }

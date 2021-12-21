@@ -25,7 +25,7 @@ class AuthenticatePersonUseCase {
         @inject("PersonsRepository")
         private personsRepository: IPersonRepository,
         @inject("DayjsDateProvider")
-        private dayjsDateProvider: IDateProvider
+        private dateProvider: IDateProvider
     ){}
 
     async execute({email, cpf}: IRequest): Promise<IResponse>{
