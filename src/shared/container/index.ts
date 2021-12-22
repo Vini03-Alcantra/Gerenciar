@@ -1,5 +1,7 @@
 import {container} from "tsyringe";
 
+import "./providers"
+
 import { IPersonRepository } from "../../modules/person/repositories/IPersonRepository";
 import { PersonsRepository } from "../../modules/person/infra/typeorm/repositories/PersonsRepository";
 import { AccountsConstantRepository } from "../../modules/AccountConstant/infra/typeorm/repositories/AccountsConstantRepository";

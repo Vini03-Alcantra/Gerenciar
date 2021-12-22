@@ -3,10 +3,10 @@ import { container } from "tsyringe";
 import { AuthenticatePersonUseCase } from "./AuthenticatePersonUseCase";
 
 class AuthenticatePersonController {
-    async handle(req: Request, res: Response): Promise<Response>{
+    async handle(req: Request, res: Response): Promise<Response>{        
         try {
             const {cpf, email} = req.body;
-
+            
             const authenticatePersonUseCase = container.resolve(
                 AuthenticatePersonUseCase
             )
@@ -18,7 +18,7 @@ class AuthenticatePersonController {
 
             return res.status(201).json(token)
         } catch (err) {
-            return res.status(500).json(err.msg)
+            return res.status(500).json({err})
         }
     }
 }

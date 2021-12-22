@@ -5,6 +5,7 @@ import { inject, injectable } from "tsyringe";
 import { sign } from "jsonwebtoken";
 import { IDateProvider } from "@shared/container/providers/DateProvider/IDateProvider";
 import { IPersonsTokensRepository } from "@modules/person/repositories/IPersonsTokensRepository";
+import { AppError } from "../../../../errors/AppError";
 
 interface IRequest {
     email: string;
@@ -30,9 +31,11 @@ class AuthenticatePersonUseCase {
         @inject("PersonsTokensRepository")
         private personsTokensRepository: IPersonsTokensRepository
     ){}
-
+    
     async execute({email, cpf}: IRequest): Promise<IResponse>{
-        const user = await this.personsRepository.findByEmail(email)
+        
+        const person = await this.personsRepository.findByEmail(email)
+        
         const {
             expires_in_token, 
             secret_refresh_token,
@@ -40,26 +43,31 @@ class AuthenticatePersonUseCase {
             expires_in_refresh_token,
             expires_refresh_token_days
         } = auth
-        
-        if(!user){
-            throw new Error("Email or password Incorrect")
+
+        if(!person){
+            throw new AppError("Email or password Incorrect")
         }
 
-        if(email == user.emailPerson){
-            throw new Error("Email or password Incorrect")
+        if(email == person.emailPerson){
+            throw new AppError("Email or password Incorrect")
         }
 
-        if(cpf == user.cpf){
-            throw new Error("Email or password Incorrect")
+        console.log(person)
+
+        if(cpf == person.cpf){
+            throw new AppError("Email or password Incorrect")
         }
+
+
+                
 
         const token = sign({}, secret, {
-            subject: user.id,
+            subject: person.id,
             expiresIn: expires_in_token
         })
 
         const refresh_token = sign({email}, secret_refresh_token, {
-            subject: user.id,
+            subject: person.id,
             expiresIn: expires_in_refresh_token
         })
 
@@ -68,7 +76,7 @@ class AuthenticatePersonUseCase {
         )
 
         await this.personsTokensRepository.create({
-            person_id: user.id,
+            person_id: person.id,
             refresh_token,
             expires_date: refresh_token_expires_date
         })
@@ -76,8 +84,8 @@ class AuthenticatePersonUseCase {
         const tokenReturn: IResponse =  {
             token,
             person: {
-                name: user.nomePerson,
-                email: user.emailPerson
+                name: person.nomePerson,
+                email: person.emailPerson
             },
             refresh_token 
         }
