@@ -1,5 +1,5 @@
 import { IPersonRepository } from "@modules/person/repositories/IPersonRepository";
-import auth from "config/auth";
+import auth from "../../../../config/auth";
 
 import { inject, injectable } from "tsyringe";
 import { sign } from "jsonwebtoken";

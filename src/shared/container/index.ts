@@ -10,8 +10,8 @@ import { IRendasVariableRepository } from "../../modules/rendasVariable/reposito
 import { RendasVariableRepository } from "../../modules/rendasVariable/infra/typeorm/repositories/RendasRepository";
 import { IRendaConstantRepository } from "../../modules/rendasConstant/repositories/IRendaConstantRepository";
 import { RendaConstantRepository } from "../../modules/rendasConstant/infra/typeorm/repositories/RendaConstantRepository";
-import { IPersonsTokensRepository } from "@modules/person/repositories/IPersonsTokensRepository";
-import { PersonsTokensRepository } from "@modules/person/infra/typeorm/repositories/PersonsTokensRepository";
+import { IPersonsTokensRepository } from "../../modules/person/repositories/IPersonsTokensRepository";
+import { PersonsTokensRepository } from "../../modules/person/infra/typeorm/repositories/PersonsTokensRepository";
 
 container.registerSingleton<IPersonRepository>(
     "PersonsRepository",

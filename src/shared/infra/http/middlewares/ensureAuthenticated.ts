@@ -1,6 +1,6 @@
-import { PersonsTokensRepository } from "@modules/person/infra/typeorm/repositories/PersonsTokensRepository";
-import auth from "config/auth";
-import { AppError } from "errors/AppError";
+import { PersonsTokensRepository } from "../../../../modules/person/infra/typeorm/repositories/PersonsTokensRepository";
+import auth from "../../../../config/auth";
+import { AppError } from "../../../../errors/AppError";
 import { Response, Request, NextFunction } from "express";
 import { decode, verify } from "jsonwebtoken";
 

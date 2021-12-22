@@ -1,4 +1,4 @@
-import { AuthenticatePersonController } from "@modules/person/useCases/authenticatePerson/AuthenticatePersonController";
+import { AuthenticatePersonController } from "../../../../modules/person/useCases/authenticatePerson/AuthenticatePersonController";
 
 import { Router } from "express";
 

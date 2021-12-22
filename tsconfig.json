@@ -7,11 +7,17 @@
     "baseUrl": "./src",   
     "paths": {
       "@modules/*":["modules/*"],
-      "@shared/*":["shared/*"]
+      "@shared/*":["shared/*"],
+      "@errors/*":["errors/*"],
+      "@config/*":["config/*"]
     },             
     "resolveJsonModule": true,              
     "esModuleInterop": true,                
     "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "typeRoots":[
+      "./src/@types",
+      "./node_modules/@types"
+    ]
   }
 }
