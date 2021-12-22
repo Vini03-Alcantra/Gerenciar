@@ -23,7 +23,11 @@ export async function ensureAuthenticated (
 
     const [, token] = authHeader.split(" ")
 
+    console.log(token)
+
     try {
+
+        console.log(token, auth.secret_refresh_token)
         const {sub: person_id} = verify(
             token,
             auth.secret_refresh_token

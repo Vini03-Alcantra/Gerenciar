@@ -13,12 +13,16 @@ class CreatePersonUseCase {
     async execute({
         nomePerson,
         idadePerson,
-        emailPerson
+        emailPerson,
+        birthday, 
+        cpf
     }: ICreatePersonDTO): Promise<Person>{
         const persons = await this.personsRepository.create({
             nomePerson, 
             idadePerson, 
-            emailPerson  
+            emailPerson,
+            birthday, 
+            cpf
         })
 
         return persons

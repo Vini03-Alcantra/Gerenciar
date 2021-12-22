@@ -48,13 +48,13 @@ class AuthenticatePersonUseCase {
             throw new AppError("Email or password Incorrect")
         }
 
-        if(email == person.emailPerson){
+        if(email !== person.emailPerson){
             throw new AppError("Email or password Incorrect")
         }
 
         console.log(person)
 
-        if(cpf == person.cpf){
+        if(cpf !== person.cpf){
             throw new AppError("Email or password Incorrect")
         }
 

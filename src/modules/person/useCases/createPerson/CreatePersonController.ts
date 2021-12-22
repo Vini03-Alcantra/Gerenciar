@@ -4,7 +4,7 @@ import { container } from "tsyringe";
 class CreatePersonController {
     async handle(req: Request, res: Response): Promise<Response>{
         try {
-            const {nomePerson, idadePerson, emailPerson} = req.body
+            const {nomePerson, idadePerson, emailPerson, birthday, cpf} = req.body
             
             const createPersonUseCase = container.resolve(
                 CreatePersonUseCase
@@ -13,7 +13,9 @@ class CreatePersonController {
             const person = await createPersonUseCase.execute({
                 nomePerson,
                 idadePerson,
-                emailPerson
+                emailPerson,
+                birthday, 
+                cpf
             })
             
             return res.status(201).json(person)
