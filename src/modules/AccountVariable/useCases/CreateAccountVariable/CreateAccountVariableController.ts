@@ -21,8 +21,6 @@ class CreateAccountVariableController {
                 idPerson
             })
 
-            console.log(accountVariable)
-
             return res.status(201).json({accountVariable})            
         } catch (err){
             return res.status(500).json({msg: err.message})

@@ -1,6 +1,6 @@
 import {MigrationInterface, QueryRunner, TableColumn} from "typeorm";
 
-export class AddCreatedAt1637980506513 implements MigrationInterface {
+export class AddCreatedAt1650384262960 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.addColumn(
@@ -14,7 +14,6 @@ export class AddCreatedAt1637980506513 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropColumn("person", "createdAt")
     }
 
 }

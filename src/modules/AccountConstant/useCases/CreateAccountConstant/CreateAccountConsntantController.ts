@@ -17,8 +17,6 @@ class CreateAccountConstantController {
                 idPerson
             })
 
-            console.log(accountConstant)
-
             return res.status(201).json({accountConstant})
         } catch (err) {
             return res.status(500).json({msg: err.message})

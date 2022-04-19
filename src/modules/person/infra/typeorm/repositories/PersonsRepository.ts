@@ -12,6 +12,8 @@ class PersonsRepository implements IPersonRepository {
     
     async create({
         nomePerson, 
+        birthday,
+        cpf,
         idadePerson,
         emailPerson,
         id
@@ -20,6 +22,8 @@ class PersonsRepository implements IPersonRepository {
             nomePerson: nomePerson, 
             idadePerson: idadePerson,
             emailPerson: emailPerson,            
+            birthday: birthday,
+            cpf: cpf,
             id: id
         })
 

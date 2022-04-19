@@ -17,6 +17,6 @@ router.use("/accountVariable", accountVariableRouter)
 router.use("/rendaConstant", rendaConstantRouter)
 router.use("/rendaVariable", rendaVariableRouter)
 
-router.use(authenticatePersonRoute)
+// router.use(authenticatePersonRoute)
 
 export {router}

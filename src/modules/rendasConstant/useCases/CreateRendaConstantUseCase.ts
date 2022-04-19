@@ -16,8 +16,7 @@ class CreateRendaConstantUseCase {
         valorRenda, 
         dataRenda,
         id_person
-    }: ICreateRendaConstantDTO): Promise<RendaConstant>{
-        console.log("Paulce Cesar Baruk")
+    }: ICreateRendaConstantDTO): Promise<RendaConstant>{        
         const rendaConstant = await this.rendaConstantRepository.create({
             originRenda,
             valorRenda,

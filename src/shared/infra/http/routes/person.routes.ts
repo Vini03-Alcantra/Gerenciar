@@ -12,7 +12,7 @@ const createPersonController = new CreatePersonController()
 
 personRouter.post(
     "/", 
-    ensureAuthenticated,
+    // ensureAuthenticated,
     createPersonController.handle
 )
 
