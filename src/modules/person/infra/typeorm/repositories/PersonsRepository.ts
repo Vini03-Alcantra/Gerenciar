@@ -1,3 +1,4 @@
+import { AppError } from "../../../../../errors/AppError";
 import { ICreatePersonDTO } from "modules/person/dtos/ICreatePersonDTO";
 import { IPersonRepository } from "modules/person/repositories/IPersonRepository";
 import { getRepository, Repository } from "typeorm";
@@ -18,18 +19,33 @@ class PersonsRepository implements IPersonRepository {
         emailPerson,
         id
     }: ICreatePersonDTO): Promise<Person> {
-        const person = this.repository.create({
-            nomePerson: nomePerson, 
-            idadePerson: idadePerson,
-            emailPerson: emailPerson,            
-            birthday: birthday,
-            cpf: cpf,
-            id: id
-        })
+        console.log(typeof idadePerson)
+        try {
+            const person = this.repository.create({
+                nomePerson: nomePerson, 
+                idadePerson: idadePerson,
+                emailPerson: emailPerson,            
+                birthday: birthday,
+                cpf: cpf,
+                id: id
+            })
+    
+            await this.repository.save(person)
+    
+            return person
+        } catch (err) {
+            console.error(err)            
+        }
+    }
+    
+    async find(): Promise<Person[]> {
+        try {
+            const persons = await this.repository.find()
 
-        await this.repository.save(person)
-
-        return person
+            return persons
+        } catch (error) {
+            throw new AppError("Operation isn't possible", 501)   
+        }
     }
 
     async findByEmail(email: string): Promise<Person> {
