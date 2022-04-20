@@ -1,6 +1,6 @@
 interface ICreateRendaVariableDTO {
     id?: string;
-    origemRendaVariavle: string;
+    origemRendaVariable: string;
     valorRendaVariavel: number;
     dataRendaVariavel: Date;
     idPerson: string;

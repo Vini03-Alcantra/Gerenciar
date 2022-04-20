@@ -5,14 +5,14 @@ import { CreateRendaVariableUseCase } from "./CreateRendaVariableUseCase";
 class CreateRendaVariableController {
     async handle(req: Request, res: Response): Promise<Response>{
         try {
-            const {origemRendaVariavel, valorRendaVariavel, dataRendaVariavel, idPerson} = req.body
+            const {origemRendaVariable, valorRendaVariavel, dataRendaVariavel, idPerson} = req.body
 
             const createRendaVariavel = container.resolve(
                 CreateRendaVariableUseCase
             )
 
             const rendaVariavel = await createRendaVariavel.execute({
-                origemRendaVariavle: origemRendaVariavel, 
+                origemRendaVariable, 
                 valorRendaVariavel, 
                 dataRendaVariavel, 
                 idPerson

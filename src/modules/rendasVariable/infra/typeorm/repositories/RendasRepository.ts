@@ -11,13 +11,13 @@ class RendasVariableRepository implements IRendasVariableRepository {
     }
 
     async create({
-        origemRendaVariavle,
+        origemRendaVariable,
         valorRendaVariavel,
         dataRendaVariavel,
         idPerson
     }: ICreateRendaVariableDTO): Promise<RendaVariavel> {
         const rendaVariavel = this.repository.create({
-            origemRendaVariavel: origemRendaVariavle,
+            origemRendaVariavel: origemRendaVariable,
             valorRendaVariavel,
             dataRendaVariavel,
             idPerson

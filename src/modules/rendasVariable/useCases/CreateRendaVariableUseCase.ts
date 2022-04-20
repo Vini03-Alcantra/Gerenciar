@@ -12,13 +12,13 @@ class CreateRendaVariableUseCase {
     ){}
 
     async execute({
-        origemRendaVariavle,
+        origemRendaVariable,
         valorRendaVariavel,
         dataRendaVariavel,
         idPerson
     }: ICreateRendaVariableDTO): Promise<RendaVariavel>{
         const rendaVariavel = await this.rendaVariableRepository.create({
-            origemRendaVariavle,
+            origemRendaVariable,
             valorRendaVariavel,
             dataRendaVariavel,
             idPerson
