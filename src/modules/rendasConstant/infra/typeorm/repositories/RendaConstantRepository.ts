@@ -8,7 +8,7 @@ class RendaConstantRepository implements IRendaConstantRepository {
 
     constructor(){
         this.repository = getRepository(RendaConstant)
-    }
+    }    
 
     async create({
         originRenda, 
@@ -26,6 +26,12 @@ class RendaConstantRepository implements IRendaConstantRepository {
         await this.repository.save(rendaConstant)
         
         return rendaConstant
+    }
+
+    async read(): Promise<RendaConstant[]> {
+        const rendasConstant = await this.repository.find()
+
+        return rendasConstant
     }
 }
 

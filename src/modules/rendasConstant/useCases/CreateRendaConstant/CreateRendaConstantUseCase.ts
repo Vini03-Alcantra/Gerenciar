@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
-import { ICreateRendaConstantDTO } from "../dtos/ICreateRendaConstantDTO";
-import { RendaConstant } from "../infra/typeorm/entities/RendaConstant";
-import { IRendaConstantRepository } from "../repositories/IRendaConstantRepository";
+import { ICreateRendaConstantDTO } from "../../dtos/ICreateRendaConstantDTO";
+import { RendaConstant } from "../../infra/typeorm/entities/RendaConstant";
+import { IRendaConstantRepository } from "../../repositories/IRendaConstantRepository";
 
 @injectable()
 class CreateRendaConstantUseCase {

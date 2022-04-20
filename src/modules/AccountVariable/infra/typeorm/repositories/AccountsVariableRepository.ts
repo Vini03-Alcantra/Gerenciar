@@ -36,6 +36,12 @@ class AccountsVariableRepository implements IAccountsVariableRepository {
         return accountVariable
     }
 
+    
+    async read(): Promise<AccountVariable[]> {
+        const accountVariable = await this.repository.find()
+        return accountVariable
+    }
+
 }
 
 export {AccountsVariableRepository}

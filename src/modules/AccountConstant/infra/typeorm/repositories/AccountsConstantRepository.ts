@@ -27,6 +27,12 @@ class AccountsConstantRepository implements IAccountsConstantRepository {
         return accountConstant
     }
 
+    async read(): Promise<AccountConstant[]> {
+        const accountConstantList = await this.repository.find();
+
+        return accountConstantList
+    }
+
 }
 
 export {AccountsConstantRepository}
