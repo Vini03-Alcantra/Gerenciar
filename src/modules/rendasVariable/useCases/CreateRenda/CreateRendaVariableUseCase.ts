@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
-import { ICreateRendaVariableDTO } from "../dtos/ICreateRendaVariableDTO";
-import { RendaVariavel } from "../infra/typeorm/entities/RendaVariavel";
-import { IRendasVariableRepository } from "../repositories/IRendasVariables";
+import { ICreateRendaVariableDTO } from "../../dtos/ICreateRendaVariableDTO";
+import { RendaVariavel } from "../../infra/typeorm/entities/RendaVariavel";
+import { IRendasVariableRepository } from "../../repositories/IRendasVariables";
 
 
 @injectable()
