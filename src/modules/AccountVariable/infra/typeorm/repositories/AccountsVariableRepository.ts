@@ -11,7 +11,7 @@ class AccountsVariableRepository implements IAccountsVariableRepository {
     constructor(){
         this.repository = getRepository(AccountVariable)
     }
-
+    
     async create({
         nomeOrigemConta, 
         valorConta, 
@@ -40,6 +40,16 @@ class AccountsVariableRepository implements IAccountsVariableRepository {
     async read(): Promise<AccountVariable[]> {
         const accountVariable = await this.repository.find()
         return accountVariable
+    }
+
+    async totalValueMonth(): Promise<Number> {
+        let renda = 0;
+        const accountVariableList = await this.repository.find();
+        accountVariableList.filter((item) => {
+            renda += Number(item.valorConta)
+        })
+
+        return renda
     }
 
 }
