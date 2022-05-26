@@ -9,7 +9,6 @@ class AccountsConstantRepository implements IAccountsConstantRepository {
     constructor(){
         this.repository = getRepository(AccountConstant)
     }
-    
     async create({
         nameOriginAccount,
         valueAccount, 
@@ -33,6 +32,15 @@ class AccountsConstantRepository implements IAccountsConstantRepository {
         return accountConstantList
     }
 
+    async totalValueMonth(): Promise<Number> {
+        let renda = 0;
+        const accountConstantList = await this.repository.find();
+        accountConstantList.filter((item) => {
+            renda += Number(item.valueAccount)
+        })
+
+        return renda
+    }
 }
 
 export {AccountsConstantRepository}
