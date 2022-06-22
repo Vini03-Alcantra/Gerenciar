@@ -52,13 +52,6 @@ class AuthenticatePersonUseCase {
             throw new AppError("Email or cpf Incorrect")
         }
 
-        console.log(expires_in_token, 
-            secret_refresh_token,
-            secret, 
-            expires_in_refresh_token,
-            expires_refresh_token_days)
-        console.log(person)
-
         if(cpf !== person.cpf){
             throw new AppError("Email or cpf Incorrect")
         }

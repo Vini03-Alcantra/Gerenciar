@@ -11,8 +11,10 @@ async function ensureAuthenticated(
     next: NextFunction
 ) {
     const authHeader = req.headers.authorization;
+    console.log(authHeader)
 
     if(!authHeader){
+        console.log("Aqui")
         throw new Error("Token missing")
     }
     
@@ -21,7 +23,7 @@ async function ensureAuthenticated(
     try {
         const {sub: user_id} = JWT.verify(
             token,
-            `${process.env.secret_auth_key}`
+            `${process.env.secret}`
         ) as IPayload;
 
         req.user ={
@@ -29,7 +31,8 @@ async function ensureAuthenticated(
         }
 
         next()
-    } catch (error) {
+    } catch (err) {
+        console.error(err)
         throw new Error("Token missing")
     }
 }
