@@ -12,13 +12,13 @@ class CreateRendaConstantUseCase {
     ){}
 
     async execute({
-        originRenda, 
+        origemRenda, 
         valorRenda, 
         dataRenda,
         id_person
     }: ICreateRendaConstantDTO): Promise<RendaConstant>{        
         const rendaConstant = await this.rendaConstantRepository.create({
-            originRenda,
+            origemRenda,
             valorRenda,
             dataRenda,
             id_person

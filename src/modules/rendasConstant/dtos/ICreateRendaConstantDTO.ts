@@ -1,6 +1,6 @@
 interface ICreateRendaConstantDTO {
     id?: string;
-    originRenda: string;
+    origemRenda: string;
     valorRenda: number;
     dataRenda?: Date;
     id_person: string;

@@ -11,13 +11,13 @@ class RendaConstantRepository implements IRendaConstantRepository {
     }    
     
     async create({
-        originRenda, 
+        origemRenda, 
         valorRenda, 
         dataRenda,
         id_person
     }: ICreateRendaConstantDTO): Promise<RendaConstant> {
         const rendaConstant = this.repository.create({
-            origemRenda: originRenda,
+            origemRenda,
             valorRenda,
             dataRenda,
             id_person

@@ -18,8 +18,7 @@ class PersonsRepository implements IPersonRepository {
         idadePerson,
         emailPerson,
         id
-    }: ICreatePersonDTO): Promise<Person> {
-        console.log(typeof idadePerson)
+    }: ICreatePersonDTO): Promise<Person> {        
         try {
             const person = this.repository.create({
                 nomePerson: nomePerson, 

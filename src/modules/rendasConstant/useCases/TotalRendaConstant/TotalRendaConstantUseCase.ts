@@ -1,5 +1,4 @@
 import { inject, injectable } from "tsyringe";
-import { RendaConstant } from "../../infra/typeorm/entities/RendaConstant";
 import { IRendaConstantRepository } from "../../repositories/IRendaConstantRepository";
 
 @injectable()

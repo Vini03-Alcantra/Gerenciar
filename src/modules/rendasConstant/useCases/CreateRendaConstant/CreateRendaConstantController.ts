@@ -13,7 +13,7 @@ class CreateRendaContantController {
             )
 
             const rendaConstant = await createRendaConstantUseCase.execute({
-                originRenda: origemRenda, 
+                origemRenda, 
                 valorRenda, 
                 dataRenda,
                 id_person
