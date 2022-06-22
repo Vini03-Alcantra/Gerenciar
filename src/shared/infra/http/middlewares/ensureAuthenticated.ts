@@ -43,7 +43,7 @@ export async function ensureAuthenticated (
         }
 
         req.user = {
-            id: person_id
+            uuid: person_id
         }
 
         next()

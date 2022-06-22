@@ -11,11 +11,11 @@ import {ensureAuthenticated} from "../../../../midlewares/ensure-authenticated"
 
 const router = Router()
 
-router.use("/person", ensureAuthenticated, personRouter)
-router.use("/accountConstant", accountRouter)
-router.use("/accountVariable", accountVariableRouter)
-router.use("/rendaConstant", rendaConstantRouter)
-router.use("/rendaVariable", rendaVariableRouter)
+router.use("/person", personRouter)
+router.use("/accountConstant", ensureAuthenticated, accountRouter)
+router.use("/accountVariable", ensureAuthenticated, accountVariableRouter)
+router.use("/rendaConstant", ensureAuthenticated, rendaConstantRouter)
+router.use("/rendaVariable", ensureAuthenticated, rendaVariableRouter)
 
 router.use(authenticatePersonRoute)
 

@@ -19,7 +19,7 @@ class Person {
     @Column({name: "birthday"})
     birthday: Date;
 
-    @Column({name: "cpf"})
+    @Column({name: "cpf", unique: true})
     cpf: string;
 
     constructor(){

@@ -10,13 +10,13 @@ const createPersonController = new CreatePersonController()
 const readPersonController = new ReadPersonController()
 
 personRouter.post(
-    "/", 
-    // ensureAuthenticated,
+    "/",     
     createPersonController.handle
 )
 
 personRouter.get(
     "/",
+    ensureAuthenticated,
     readPersonController.handle
 )
 
