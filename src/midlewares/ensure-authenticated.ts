@@ -10,11 +10,9 @@ async function ensureAuthenticated(
     res: Response,
     next: NextFunction
 ) {
-    const authHeader = req.headers.authorization;
-    console.log(authHeader)
+    const authHeader = req.headers.authorization;    
 
-    if(!authHeader){
-        console.log("Aqui")
+    if(!authHeader){        
         throw new Error("Token missing")
     }
     
