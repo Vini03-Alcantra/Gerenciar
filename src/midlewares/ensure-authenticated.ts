@@ -10,12 +10,11 @@ async function ensureAuthenticated(
     res: Response,
     next: NextFunction
 ) {
-    const authHeader = req.headers.authorization
+    const authHeader = req.headers.authorization;
 
     if(!authHeader){
         throw new Error("Token missing")
     }
-
     
     const [token] = authHeader.split(' ')
     
@@ -25,7 +24,7 @@ async function ensureAuthenticated(
             `${process.env.secret_auth_key}`
         ) as IPayload;
 
-        req.user = {
+        req.user ={
             uuid: user_id
         }
 

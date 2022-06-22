@@ -45,21 +45,23 @@ class AuthenticatePersonUseCase {
         } = auth
 
         if(!person){
-            throw new AppError("Email or password Incorrect")
+            throw new AppError("Email or cpf Incorrect")
         }
 
         if(email !== person.emailPerson){
-            throw new AppError("Email or password Incorrect")
+            throw new AppError("Email or cpf Incorrect")
         }
 
+        console.log(expires_in_token, 
+            secret_refresh_token,
+            secret, 
+            expires_in_refresh_token,
+            expires_refresh_token_days)
         console.log(person)
 
         if(cpf !== person.cpf){
-            throw new AppError("Email or password Incorrect")
+            throw new AppError("Email or cpf Incorrect")
         }
-
-
-                
 
         const token = sign({}, secret, {
             subject: person.id,
@@ -72,7 +74,7 @@ class AuthenticatePersonUseCase {
         })
 
         const refresh_token_expires_date = this.dateProvider.addDays(
-            expires_refresh_token_days
+            Number(expires_refresh_token_days)
         )
 
         await this.personsTokensRepository.create({

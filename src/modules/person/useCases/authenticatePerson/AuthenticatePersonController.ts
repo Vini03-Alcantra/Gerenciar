@@ -4,9 +4,9 @@ import { AuthenticatePersonUseCase } from "./AuthenticatePersonUseCase";
 
 class AuthenticatePersonController {
     async handle(req: Request, res: Response): Promise<Response>{        
+        const {cpf, email} = req.body;
+        
         try {
-            const {cpf, email} = req.body;
-            
             const authenticatePersonUseCase = container.resolve(
                 AuthenticatePersonUseCase
             )
