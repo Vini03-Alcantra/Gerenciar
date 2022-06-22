@@ -9,7 +9,7 @@ class RendasVariableRepository implements IRendasVariableRepository {
     constructor(){
         this.repository = getRepository(RendaVariavel)
     }    
-
+    
     async create({
         origemRendaVariable,
         valorRendaVariavel,
@@ -32,6 +32,16 @@ class RendasVariableRepository implements IRendasVariableRepository {
         const rendasVariavel = await this.repository.find()
 
         return rendasVariavel
+    }
+
+    async total(): Promise<Number> {
+        let renda = 0;
+        const rendasVariavel = await this.repository.find()
+        rendasVariavel.filter((item) => {
+            renda += Number(item.valorRendaVariavel)
+        })
+
+        return renda
     }
 
 }

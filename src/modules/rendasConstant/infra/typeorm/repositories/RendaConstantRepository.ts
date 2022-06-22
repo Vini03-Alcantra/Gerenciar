@@ -9,7 +9,7 @@ class RendaConstantRepository implements IRendaConstantRepository {
     constructor(){
         this.repository = getRepository(RendaConstant)
     }    
-
+    
     async create({
         originRenda, 
         valorRenda, 
@@ -32,6 +32,15 @@ class RendaConstantRepository implements IRendaConstantRepository {
         const rendasConstant = await this.repository.find()
 
         return rendasConstant
+    }
+
+    async total(): Promise<Number> {
+        let total = 0;
+        const rendasConstant = await this.repository.find()
+        rendasConstant.forEach((item) => {
+            total += Number(item.valorRenda)
+        })
+        return total
     }
 }
 
