@@ -1,0 +1,7 @@
+
+
+interface IBalanceReposritory {
+
+}
+
+export {IBalanceReposritory}

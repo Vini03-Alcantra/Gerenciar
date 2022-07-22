@@ -11,7 +11,7 @@ async function ensureAuthenticated(
     next: NextFunction
 ) {
     const authHeader = req.headers.authorization;    
-
+    
     if(!authHeader){        
         throw new Error("Token missing")
     }
