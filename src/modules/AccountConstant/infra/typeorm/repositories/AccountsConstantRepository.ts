@@ -12,11 +12,13 @@ class AccountsConstantRepository implements IAccountsConstantRepository {
     async create({
         nameOriginAccount,
         valueAccount, 
+        tipoConta,
         idPerson
     }: ICreateAccountConstantDTO): Promise<AccountConstant> {
         const accountConstant = this.repository.create({
             nameOriginAccount,
             valueAccount,
+            tipoConta,
             id_person: idPerson,
             dateAccount: new Date()
         })    

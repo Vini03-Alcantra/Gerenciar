@@ -5,7 +5,7 @@ import { CreateAccountConstantUseCase } from "./CreateAccountConstantUseCase";
 class CreateAccountConstantController {
     async handle(req: Request, res: Response): Promise<Response>{
         try {
-            const {nameOriginAccount, valueAccount, idPerson} = req.body;
+            const {nameOriginAccount, valueAccount, idPerson, tipoConta} = req.body;
             
             const createAccountConstantUseCase = container.resolve(
                 CreateAccountConstantUseCase
@@ -13,6 +13,7 @@ class CreateAccountConstantController {
 
             const accountConstant = await createAccountConstantUseCase.execute({
                 nameOriginAccount, 
+                tipoConta,
                 valueAccount, 
                 idPerson
             })

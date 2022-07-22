@@ -6,7 +6,7 @@ async function jwtAuthenticationMiddleware(req: Request, res: Response, next: Ne
 
     if(!authorizationHeader){
         throw new Error("Credentials don't send")
-    }
+    }               
 
     try {
         const [authenticationType, token] = authorizationHeader.split(' ')

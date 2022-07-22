@@ -13,6 +13,9 @@ class AccountConstant {
     @Column({name: "valor_conta"})
     valueAccount: number;
 
+    @Column({name: "tipo_conta"})
+    tipoConta: String;
+    
     @Column({name: "data_conta"})
     dateAccount: Date;
 
