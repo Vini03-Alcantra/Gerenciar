@@ -21,11 +21,11 @@ async function jwtAuthenticationMiddleware(req: Request, res: Response, next: Ne
             if(typeof tokenPayload !== 'object' || !tokenPayload.sub){
                 throw new Error("Invalid token")
             }
-
+            console.log(tokenPayload)
             req.user = {
                 uuid: tokenPayload.sub
             }
-
+            console.log(tokenPayload.sub)
             next()
         } catch (err) {
             console.error(err)

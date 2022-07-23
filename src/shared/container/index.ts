@@ -14,6 +14,8 @@ import { IRendaConstantRepository } from "../../modules/rendasConstant/repositor
 import { RendaConstantRepository } from "../../modules/rendasConstant/infra/typeorm/repositories/RendaConstantRepository";
 import { IPersonsTokensRepository } from "../../modules/person/repositories/IPersonsTokensRepository";
 import { PersonsTokensRepository } from "../../modules/person/infra/typeorm/repositories/PersonsTokensRepository";
+import { IBalanceReposritory } from "../../modules/balance/repositories/IBalanceRepository"
+import { BalanceRepository } from "../../modules/balance/infra/repositories/BalanceRepository"
 
 container.registerSingleton<IPersonRepository>(
     "PersonsRepository",
@@ -43,4 +45,9 @@ container.registerSingleton<IRendaConstantRepository>(
 container.registerSingleton<IPersonsTokensRepository>(
     "PersonsTokensRepository",
     PersonsTokensRepository
+)
+
+container.registerSingleton<IBalanceReposritory>(
+    "BalanceRepository",
+    BalanceRepository
 )

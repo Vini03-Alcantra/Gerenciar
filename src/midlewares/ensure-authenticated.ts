@@ -23,7 +23,7 @@ async function ensureAuthenticated(
             token,
             `${process.env.secret}`
         ) as IPayload;
-
+        
         req.user ={
             uuid: user_id
         }
