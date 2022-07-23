@@ -4,21 +4,25 @@ import {AccountsConstantRepository} from "@modules/AccountConstant/infra/typeorm
 import {AccountsVariableRepository} from "@modules/AccountVariable/infra/typeorm/repositories/AccountsVariableRepository"
 import {RendaConstantRepository} from "@modules/rendasConstant/infra/typeorm/repositories/RendaConstantRepository"
 import {RendasVariableRepository} from "@modules/rendasVariable/infra/typeorm/repositories/RendasRepository"
+import { DayjsDateProvider } from "@shared/container/providers/DateProvider/implementations/DayjsDateProvider";
+
 import { getRepository, Repository } from "typeorm";
 class BalanceRepository implements IBalanceReposritory {
     private repositoryAccountConstant: Repository<AccountsConstantRepository>;
     private repositoryAccountsVariableRepository: Repository<AccountsVariableRepository>;
     private repositoryRendaConstantRepository: Repository<RendaConstantRepository>;
     private repositoryRendasVariableRepository: Repository<RendasVariableRepository>;
-
+    private providerDate: DayjsDateProvider;
 
     constructor(){
         this.repositoryAccountConstant = getRepository(AccountsConstantRepository)
         this.repositoryAccountsVariableRepository = getRepository(AccountsVariableRepository)
         this.repositoryRendaConstantRepository = getRepository(RendaConstantRepository)
         this.repositoryRendasVariableRepository = getRepository(RendasVariableRepository)
+        this.providerDate = new DayjsDateProvider()
     }
     async balanceMomentMonth(person_id: string): Promise<Number> {
+        const today = this.providerDate.dateNow()
         const accountConstantCurrentMonth = await this.repositoryAccountConstant
             .createQueryBuilder()
             .where("conta_fixa.id_person", {id_person: person_id})

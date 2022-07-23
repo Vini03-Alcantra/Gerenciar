@@ -28,7 +28,7 @@ class AccountsVariableRepository implements IAccountsVariableRepository {
             dataConta,
             formaPagamento,
             contaPlanejada,
-            idPerson
+            idPerson,            
         })
 
         await this.repository.save(accountVariable)
