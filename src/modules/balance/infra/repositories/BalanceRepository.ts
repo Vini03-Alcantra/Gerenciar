@@ -1,37 +1,41 @@
 
 import { IBalanceReposritory } from "@modules/balance/repositories/IBalanceRepository";
-import {AccountsConstantRepository} from "@modules/AccountConstant/infra/typeorm/repositories/AccountsConstantRepository"
-import {AccountsVariableRepository} from "@modules/AccountVariable/infra/typeorm/repositories/AccountsVariableRepository"
-import {RendaConstantRepository} from "@modules/rendasConstant/infra/typeorm/repositories/RendaConstantRepository"
-import {RendasVariableRepository} from "@modules/rendasVariable/infra/typeorm/repositories/RendasRepository"
 import { DayjsDateProvider } from "@shared/container/providers/DateProvider/implementations/DayjsDateProvider";
 
 import { getRepository, Repository } from "typeorm";
+import { AccountConstant } from "@modules/AccountConstant/infra/typeorm/entities/AccountConstant";
+import { AccountVariable } from "@modules/AccountVariable/infra/typeorm/entities/AccountVariable";
+import { RendaConstant } from "@modules/rendasConstant/infra/typeorm/entities/RendaConstant";
+import { RendaVariavel } from "@modules/rendasVariable/infra/typeorm/entities/RendaVariavel";
 class BalanceRepository implements IBalanceReposritory {
-    private repositoryAccountConstant: Repository<AccountsConstantRepository>;
-    private repositoryAccountsVariableRepository: Repository<AccountsVariableRepository>;
-    private repositoryRendaConstantRepository: Repository<RendaConstantRepository>;
-    private repositoryRendasVariableRepository: Repository<RendasVariableRepository>;
+    private repositoryAccountConstant: Repository<AccountConstant>;
+    private repositoryAccountsVariableRepository: Repository<AccountVariable>;
+    private repositoryRendaConstantRepository: Repository<RendaConstant>;
+    private repositoryRendasVariableRepository: Repository<RendaVariavel>;
+
+
     private providerDate: DayjsDateProvider;
 
     constructor(){
-        this.repositoryAccountConstant = getRepository(AccountsConstantRepository)
-        this.repositoryAccountsVariableRepository = getRepository(AccountsVariableRepository)
-        this.repositoryRendaConstantRepository = getRepository(RendaConstantRepository)
-        this.repositoryRendasVariableRepository = getRepository(RendasVariableRepository)
+        this.repositoryAccountConstant = getRepository(AccountConstant)
+        this.repositoryAccountsVariableRepository = getRepository(AccountVariable)
+        this.repositoryRendaConstantRepository = getRepository(RendaConstant)
+        this.repositoryRendasVariableRepository = getRepository(RendaVariavel)
         this.providerDate = new DayjsDateProvider()
     }
     async balanceMomentMonth(person_id: string): Promise<Number> {
-        const today = this.providerDate.dateNow()
-        const accountConstantCurrentMonth = await this.repositoryAccountConstant
-            .createQueryBuilder()
-            .where("conta_fixa.id_person", {id_person: person_id})
-            .getMany()            
-        
-        
-        
+        let renda = 0;
         try {
-            
+            const today = this.providerDate.dateNow()
+            const firstDayMonth = this.providerDate.firstDayMonth()
+            const accountConstantCurrentMonth = await this.repositoryAccountConstant
+                .createQueryBuilder("conta_fixa")
+                .where("conta_fixa.id_person = :id_person AND conta_fixa.data_conta BETWEEN :first_day AND :today", {id_person: person_id, first_day: firstDayMonth, today: today})
+                .getMany()            
+            const valueAccountConstant = accountConstantCurrentMonth.filter((item) => {
+                renda += Number(item.valueAccount)
+            })
+            return renda
         } catch (error) {
             
         }
