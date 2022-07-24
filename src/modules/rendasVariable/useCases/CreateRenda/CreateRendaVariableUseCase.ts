@@ -11,17 +11,19 @@ class CreateRendaVariableUseCase {
         private rendaVariableRepository: IRendasVariableRepository
     ){}
 
-    async execute({
+    async execute(
+        auth_id: string,
+        {
         origemRendaVariable,
         valorRendaVariavel,
-        dataRendaVariavel,
-        idPerson
+        dataRendaVariavel
     }: ICreateRendaVariableDTO): Promise<RendaVariavel>{
-        const rendaVariavel = await this.rendaVariableRepository.create({
+        const rendaVariavel = await this.rendaVariableRepository.create(
+            auth_id,
+            {
             origemRendaVariable,
             valorRendaVariavel,
-            dataRendaVariavel,
-            idPerson
+            dataRendaVariavel
         })
 
         return rendaVariavel

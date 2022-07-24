@@ -9,7 +9,7 @@ class ReadRendaVariableController {
                 ReadRendaVariableUseCase
             )
 
-            const rendaVariavel = await readRendaVariableUseCase.execute()
+            const rendaVariavel = await readRendaVariableUseCase.execute(req.user.uuid)
 
             return res.status(201).json({rendaVariavel})
         } catch (err) {

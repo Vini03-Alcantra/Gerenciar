@@ -9,7 +9,7 @@ class TotalRendaVariableController {
                 TotalRendaVariableUseCase
             )
 
-            const rendaVariavel = await totalRendaVariableUseCase.execute()
+            const rendaVariavel = await totalRendaVariableUseCase.execute(req.user.uuid)
 
             return res.status(201).json({rendaVariavel})
         } catch (err) {

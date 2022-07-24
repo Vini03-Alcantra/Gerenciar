@@ -3,7 +3,6 @@ interface ICreateRendaVariableDTO {
     origemRendaVariable: string;
     valorRendaVariavel: number;
     dataRendaVariavel: Date;
-    idPerson: string;
 }
 
 export {ICreateRendaVariableDTO}

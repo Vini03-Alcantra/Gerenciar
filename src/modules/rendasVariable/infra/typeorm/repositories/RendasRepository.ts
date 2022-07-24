@@ -10,17 +10,18 @@ class RendasVariableRepository implements IRendasVariableRepository {
         this.repository = getRepository(RendaVariavel)
     }    
     
-    async create({
+    async create(
+        auth_id: string,
+        {
         origemRendaVariable,
         valorRendaVariavel,
-        dataRendaVariavel,
-        idPerson
+        dataRendaVariavel
     }: ICreateRendaVariableDTO): Promise<RendaVariavel> {
         const rendaVariavel = this.repository.create({
             origemRendaVariavel: origemRendaVariable,
             valorRendaVariavel,
             dataRendaVariavel,
-            idPerson
+            idPerson: auth_id
         })
 
         await this.repository.save(rendaVariavel)
@@ -28,15 +29,24 @@ class RendasVariableRepository implements IRendasVariableRepository {
         return rendaVariavel
     }
 
-    async read(): Promise<RendaVariavel[]> {
-        const rendasVariavel = await this.repository.find()
+    async read(auth_id: string): Promise<RendaVariavel[]> {
+        const rendasVariavel = await this.repository.find({
+            where: {
+                idPerson: auth_id
+            }
+        })
 
         return rendasVariavel
     }
 
-    async total(): Promise<Number> {
+    async total(auth_id: string): Promise<Number> {
         let renda = 0;
-        const rendasVariavel = await this.repository.find()
+        const rendasVariavel = await this.repository.find({
+            where: {
+                idPerson: auth_id
+            }
+        })
+        
         rendasVariavel.filter((item) => {
             renda += Number(item.valorRendaVariavel)
         })

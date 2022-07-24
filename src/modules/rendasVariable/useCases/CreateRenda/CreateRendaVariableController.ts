@@ -11,11 +11,12 @@ class CreateRendaVariableController {
                 CreateRendaVariableUseCase
             )
 
-            const rendaVariavel = await createRendaVariavel.execute({
+            const rendaVariavel = await createRendaVariavel.execute(
+                req.user.uuid,
+                {
                 origemRendaVariable, 
                 valorRendaVariavel, 
-                dataRendaVariavel, 
-                idPerson
+                dataRendaVariavel
             })
 
             return res.status(201).json({rendaVariavel})

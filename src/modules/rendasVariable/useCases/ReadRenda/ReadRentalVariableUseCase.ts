@@ -11,8 +11,8 @@ class ReadRendaVariableUseCase {
         private rendaVariableRepository: IRendasVariableRepository
     ){}
 
-    async execute(): Promise<RendaVariavel[]>{
-        const rendaVariavels = await this.rendaVariableRepository.read()
+    async execute(auth_id: string): Promise<RendaVariavel[]>{
+        const rendaVariavels = await this.rendaVariableRepository.read(auth_id)
 
         return rendaVariavels
     }
