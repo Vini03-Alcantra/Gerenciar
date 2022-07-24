@@ -13,7 +13,6 @@ class BalanceRepository implements IBalanceReposritory {
     private repositoryRendaConstant: Repository<RendaConstant>;
     private repositoryRendasVariable: Repository<RendaVariavel>;
 
-
     private providerDate: DayjsDateProvider;
 
     constructor(){
@@ -39,14 +38,14 @@ class BalanceRepository implements IBalanceReposritory {
                 spent += Number(item.valueAccount)
             })
             
-            // const accountVariableCurrentMonth = await this.repositoryAccountsVariable
-            //     .createQueryBuilder("conta_variavel")
-            //     .where("conta_variavel.id_person = :id_person AND conta_variavel.data_conta BETWEEN :first_day AND :today", {id_person: person_id, first_day: firstDayMonth, today: today})
-            //     .getMany()            
-            // console.log("account", accountVariableCurrentMonth)
-            // accountVariableCurrentMonth.filter((item) => {                
-            //     spent += Number(item.valorConta)
-            // })
+            const accountVariableCurrentMonth = await this.repositoryAccountsVariable
+                .createQueryBuilder("conta_variavel")
+                .where("conta_variavel.id_person = :id_person AND conta_variavel.data_conta BETWEEN :first_day AND :today", {id_person: person_id, first_day: firstDayMonth, today: today})
+                .getMany()            
+            
+            accountVariableCurrentMonth.filter((item) => {                
+                spent += Number(item.valorConta)
+            })
 
             const rendaFixaCurrentMonth = await this.repositoryRendaConstant
                 .createQueryBuilder("renda_fixa")
@@ -66,8 +65,9 @@ class BalanceRepository implements IBalanceReposritory {
                 income += Number(item.valorRendaVariavel)
             )
 
-            console.log(income)
-            return spent
+            const result = income - spent
+            
+            return result
         } catch (error) {
             throw new Error("happend error")
         }
