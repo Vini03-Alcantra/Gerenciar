@@ -12,14 +12,15 @@ class AccountsVariableRepository implements IAccountsVariableRepository {
         this.repository = getRepository(AccountVariable)
     }
     
-    async create({
+    async create(
+        auth_id: string,
+        {
         nomeOrigemConta, 
         valorConta, 
         tipoConta, 
         dataConta,
         formaPagamento, 
-        contaPlanejada, 
-        idPerson
+        contaPlanejada
     }: ICreateContaVariableDTO): Promise<AccountVariable> {
         const accountVariable = this.repository.create({
             nomeOrigemConta,
@@ -28,7 +29,7 @@ class AccountsVariableRepository implements IAccountsVariableRepository {
             dataConta,
             formaPagamento,
             contaPlanejada,
-            idPerson,            
+            idPerson: auth_id,            
         })
 
         await this.repository.save(accountVariable)
@@ -37,14 +38,18 @@ class AccountsVariableRepository implements IAccountsVariableRepository {
     }
 
     
-    async read(): Promise<AccountVariable[]> {
-        const accountVariable = await this.repository.find()
+    async read(auth_id: string): Promise<AccountVariable[]> {
+        const accountVariable = await this.repository.find({where: {
+            idPerson: auth_id
+        }})
         return accountVariable
     }
 
-    async totalValueMonth(): Promise<Number> {
+    async totalValueMonth(auth_id: string): Promise<Number> {
         let renda = 0;
-        const accountVariableList = await this.repository.find();
+        const accountVariableList = await this.repository.find({where: {
+            idPerson: auth_id
+        }});
         accountVariableList.filter((item) => {
             renda += Number(item.valorConta)
         })

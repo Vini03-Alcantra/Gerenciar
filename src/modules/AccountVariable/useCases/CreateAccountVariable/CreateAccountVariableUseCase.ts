@@ -11,23 +11,25 @@ class CreateAccountVariableUseCase {
         private accountVariableRepository: IAccountsVariableRepository
     ){}
 
-    async execute({
+    async execute(
+        auth_id: string, 
+        {
         nomeOrigemConta,
         valorConta,
         tipoConta,
         dataConta,
         formaPagamento,
-        contaPlanejada,
-        idPerson
+        contaPlanejada
     }: ICreateContaVariableDTO): Promise<AccountVariable>{
-        const accountVariable = await this.accountVariableRepository.create({
+        const accountVariable = await this.accountVariableRepository.create(
+            auth_id,
+            {
             nomeOrigemConta,
             valorConta,
             tipoConta,
             dataConta,
             formaPagamento,
             contaPlanejada,
-            idPerson
         })
 
         return accountVariable

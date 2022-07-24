@@ -5,8 +5,7 @@ interface ICreateContaVariableDTO {
     tipoConta: string;
     dataConta: Date;
     formaPagamento: string;
-    contaPlanejada: boolean;
-    idPerson: string;
+    contaPlanejada: boolean;    
 }
 
 export {ICreateContaVariableDTO}

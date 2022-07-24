@@ -11,14 +11,15 @@ class CreateAccountVariableController {
                 CreateAccountVariableUseCase
             )
 
-            const accountVariable = await createAccountVariableUseCase.execute({
+            const accountVariable = await createAccountVariableUseCase.execute(
+                req.user.uuid,
+                {
                 nomeOrigemConta,
                 valorConta,
                 tipoConta,
                 dataConta,
                 formaPagamento,
-                contaPlanejada,
-                idPerson
+                contaPlanejada
             })
 
             return res.status(201).json({accountVariable})            
