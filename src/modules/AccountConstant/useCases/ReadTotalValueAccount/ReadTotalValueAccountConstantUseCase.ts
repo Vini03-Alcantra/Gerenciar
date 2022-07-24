@@ -1,5 +1,4 @@
 import { inject, injectable } from "tsyringe";
-import { AccountConstant } from "modules/AccountConstant/infra/typeorm/entities/AccountConstant";
 import { IAccountsConstantRepository } from "modules/AccountConstant/repositories/IAccountsConstantRepository";
 @injectable()
 class ReadTotalValueAccountConstantUseCase {
@@ -8,8 +7,8 @@ class ReadTotalValueAccountConstantUseCase {
         private accountsConstantRepository: IAccountsConstantRepository
     ){}
 
-    async execut(): Promise<Number>{
-        const totalValue = await this.accountsConstantRepository.totalValueMonth()
+    async execute(auth_id: string): Promise<Number>{
+        const totalValue = await this.accountsConstantRepository.totalValueMonth(auth_id)
         return totalValue
     }
 }

@@ -11,12 +11,14 @@ class CreateAccountConstantController {
                 CreateAccountConstantUseCase
             )
 
-            const accountConstant = await createAccountConstantUseCase.execute({
-                nameOriginAccount, 
-                tipoConta,
-                valueAccount, 
-                idPerson
-            })
+            const accountConstant = await createAccountConstantUseCase.execute(
+                req.user.uuid,
+                {
+                    nameOriginAccount, 
+                    tipoConta,
+                    valueAccount                    
+                }
+            )
 
             return res.status(201).json({accountConstant})
         } catch (err) {

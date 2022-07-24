@@ -10,8 +10,8 @@ class ReadAccountConstantUseCase {
         private accountsConstantRepository: IAccountsConstantRepository
     ){}
 
-    async execute (): Promise<AccountConstant[]>{
-        const accountConstant = await this.accountsConstantRepository.read()
+    async execute (auth_id: string): Promise<AccountConstant[]>{
+        const accountConstant = await this.accountsConstantRepository.read(auth_id)
 
         return accountConstant
     }

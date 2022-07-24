@@ -9,7 +9,7 @@ class ReadTotalValueAccountConstantController {
                 ReadTotalValueAccountConstantUseCase
             )
 
-            const readTotalValueAccountConstant = await readTotalValueAccountConstantUseCase.execut()
+            const readTotalValueAccountConstant = await readTotalValueAccountConstantUseCase.execute(req.user.uuid)
             return res.status(200).json({readTotalValueAccountConstant})
         } catch(err){
             return res.status(500).json({msg: err.message})

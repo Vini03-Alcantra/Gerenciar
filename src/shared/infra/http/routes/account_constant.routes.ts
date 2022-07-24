@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { CreateAccountConstantController } from "../../../../modules/AccountConstant/useCases/CreateAccountConstant/CreateAccountConsntantController";
+import { CreateAccountConstantController } from "../../../../modules/AccountConstant/useCases/CreateAccountConstant/CreateAccountConstantController";
 import { ReadAccountConstantController } from "../../../../modules/AccountConstant/useCases/ReadAccountConstant/ReadAccountConstantController";
 import { ReadTotalValueAccountConstantController } from "../../../../modules/AccountConstant/useCases/ReadTotalValueAccount/ReadTotalValueAccountConstantController";
 

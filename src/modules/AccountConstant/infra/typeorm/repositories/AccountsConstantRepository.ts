@@ -9,17 +9,19 @@ class AccountsConstantRepository implements IAccountsConstantRepository {
     constructor(){
         this.repository = getRepository(AccountConstant)
     }
-    async create({
+
+    async create(
+        auth_id: string,
+        {
         nameOriginAccount,
         valueAccount, 
         tipoConta,
-        idPerson
     }: ICreateAccountConstantDTO): Promise<AccountConstant> {
         const accountConstant = this.repository.create({
             nameOriginAccount,
             valueAccount,
             tipoConta,
-            id_person: idPerson,
+            id_person: auth_id,
             dateAccount: new Date()
         })    
 
@@ -28,15 +30,23 @@ class AccountsConstantRepository implements IAccountsConstantRepository {
         return accountConstant
     }
 
-    async read(): Promise<AccountConstant[]> {
-        const accountConstantList = await this.repository.find();
+    async read(auth_id: string): Promise<AccountConstant[]> {
+        const accountConstantList = await this.repository.find({
+            where: {
+                id_person: auth_id
+            }
+        });
 
         return accountConstantList
     }
 
-    async totalValueMonth(): Promise<Number> {
+    async totalValueMonth(auth_id: string): Promise<Number> {
         let renda = 0;
-        const accountConstantList = await this.repository.find();
+        const accountConstantList = await this.repository.find({
+            where: {
+                id_person: auth_id
+            }
+        });
         accountConstantList.filter((item) => {
             renda += Number(item.valueAccount)
         })

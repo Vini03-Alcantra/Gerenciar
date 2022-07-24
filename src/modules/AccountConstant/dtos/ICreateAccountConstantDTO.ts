@@ -4,7 +4,6 @@ interface ICreateAccountConstantDTO {
     valueAccount: number;
     tipoConta: string;
     dateAccount?: Date;
-    idPerson: string;
 }
 
 export {ICreateAccountConstantDTO}

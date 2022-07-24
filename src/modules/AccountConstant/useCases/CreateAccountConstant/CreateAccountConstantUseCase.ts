@@ -10,13 +10,15 @@ class CreateAccountConstantUseCase {
         private accountsConstantRepository: IAccountsConstantRepository
     ){}
 
-    async execute ({nameOriginAccount, valueAccount, tipoConta, idPerson}: ICreateAccountConstantDTO): Promise<AccountConstant>{
-        const accountConstant = await this.accountsConstantRepository.create({
-            nameOriginAccount, 
-            tipoConta,
-            valueAccount, 
-            idPerson
-        })
+    async execute (auth_id: string, {nameOriginAccount, valueAccount, tipoConta}: ICreateAccountConstantDTO): Promise<AccountConstant>{
+        const accountConstant = await this.accountsConstantRepository.create(
+            auth_id,
+            {
+                nameOriginAccount, 
+                tipoConta,
+                valueAccount
+            }
+        )
 
         return accountConstant
     }

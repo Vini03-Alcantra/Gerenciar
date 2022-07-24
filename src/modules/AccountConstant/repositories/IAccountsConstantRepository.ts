@@ -3,9 +3,9 @@ import { AccountConstant } from "../infra/typeorm/entities/AccountConstant";
 
 
 interface IAccountsConstantRepository {
-    create(data: ICreateAccountConstantDTO): Promise<AccountConstant>;
-    read(): Promise<AccountConstant[]>;
-    totalValueMonth(): Promise<Number>;
+    create(auth_id: string, data: ICreateAccountConstantDTO): Promise<AccountConstant>;
+    read(auth_id: string): Promise<AccountConstant[]>;
+    totalValueMonth(auth_id: string): Promise<Number>;
 }
 
 export {IAccountsConstantRepository}
