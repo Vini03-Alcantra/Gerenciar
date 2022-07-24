@@ -10,7 +10,7 @@ class ReadRendaContantController {
                 ReadRendaConstantUseCase
             )
 
-            const rendaConstant = await readRendaConstantUseCase.execute()
+            const rendaConstant = await readRendaConstantUseCase.execute(req.user.uuid)
 
             return res.status(201).json(rendaConstant)
         } catch (err) {

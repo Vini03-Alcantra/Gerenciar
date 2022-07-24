@@ -9,8 +9,8 @@ class TotalRendaConstantUseCase {
         private rendaConstantRepository: IRendaConstantRepository
     ){}
 
-    async execute(): Promise<Number>{        
-        const rendaConstant = await this.rendaConstantRepository.total()
+    async execute(auth_id: string): Promise<Number>{        
+        const rendaConstant = await this.rendaConstantRepository.total(auth_id)
 
         return rendaConstant
     }

@@ -10,17 +10,18 @@ class RendaConstantRepository implements IRendaConstantRepository {
         this.repository = getRepository(RendaConstant)
     }    
     
-    async create({
+    async create(
+        auth_id: string,
+        {
         origemRenda, 
         valorRenda, 
-        dataRenda,
-        id_person
+        dataRenda
     }: ICreateRendaConstantDTO): Promise<RendaConstant> {
         const rendaConstant = this.repository.create({
             origemRenda,
             valorRenda,
             dataRenda,
-            id_person
+            id_person: auth_id
         })
 
         await this.repository.save(rendaConstant)
@@ -28,15 +29,21 @@ class RendaConstantRepository implements IRendaConstantRepository {
         return rendaConstant
     }
 
-    async read(): Promise<RendaConstant[]> {
-        const rendasConstant = await this.repository.find()
+    async read(auth_id: string): Promise<RendaConstant[]> {
+        const rendasConstant = await this.repository.find({where: {
+            id_person: auth_id
+        }})
 
         return rendasConstant
     }
 
-    async total(): Promise<Number> {
+    async total(auth_id: string): Promise<Number> {
         let total = 0;
-        const rendasConstant = await this.repository.find()
+        const rendasConstant = await this.repository.find({
+            where: {
+                id_person: auth_id
+            }
+        })
         rendasConstant.forEach((item) => {
             total += Number(item.valorRenda)
         })

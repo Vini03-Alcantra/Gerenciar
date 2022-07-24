@@ -10,8 +10,8 @@ class ReadRendaConstantUseCase {
         private rendaConstantRepository: IRendaConstantRepository
     ){}
 
-    async execute(): Promise<RendaConstant[]>{        
-        const rendaConstant = await this.rendaConstantRepository.read()
+    async execute(auth_id: string): Promise<RendaConstant[]>{        
+        const rendaConstant = await this.rendaConstantRepository.read(auth_id)
 
         return rendaConstant
     }

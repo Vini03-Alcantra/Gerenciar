@@ -10,7 +10,7 @@ class TotalRendaConstantController {
                 TotalRendaConstantUseCase
             )
 
-            const rendaConstant = await totalRendaConstantUseCase.execute()
+            const rendaConstant = await totalRendaConstantUseCase.execute(req.user.uuid)
 
             return res.status(201).json(rendaConstant)
         } catch (err) {

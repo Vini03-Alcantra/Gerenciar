@@ -11,17 +11,19 @@ class CreateRendaConstantUseCase {
         private rendaConstantRepository: IRendaConstantRepository
     ){}
 
-    async execute({
+    async execute(
+        auth_id: string,
+        {
         origemRenda, 
         valorRenda, 
-        dataRenda,
-        id_person
+        dataRenda        
     }: ICreateRendaConstantDTO): Promise<RendaConstant>{        
-        const rendaConstant = await this.rendaConstantRepository.create({
+        const rendaConstant = await this.rendaConstantRepository.create(
+            auth_id,
+            {
             origemRenda,
             valorRenda,
-            dataRenda,
-            id_person
+            dataRenda
         })
 
         return rendaConstant

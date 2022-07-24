@@ -2,8 +2,7 @@ interface ICreateRendaConstantDTO {
     id?: string;
     origemRenda: string;
     valorRenda: number;
-    dataRenda?: Date;
-    id_person: string;
+    dataRenda?: Date;    
 }
 
 export {ICreateRendaConstantDTO}

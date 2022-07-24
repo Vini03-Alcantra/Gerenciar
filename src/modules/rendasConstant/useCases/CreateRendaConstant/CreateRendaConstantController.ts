@@ -12,11 +12,12 @@ class CreateRendaContantController {
                 CreateRendaConstantUseCase
             )
 
-            const rendaConstant = await createRendaConstantUseCase.execute({
+            const rendaConstant = await createRendaConstantUseCase.execute(
+                req.user.uuid,
+                {
                 origemRenda, 
                 valorRenda, 
-                dataRenda,
-                id_person
+                dataRenda,                
             })
 
             return res.status(201).json(rendaConstant)
