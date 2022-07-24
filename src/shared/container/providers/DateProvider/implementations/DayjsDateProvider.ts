@@ -18,10 +18,8 @@ class DayjsDateProvider implements IDateProvider {
         return dayjs().add(hours, "hour").toDate()
     }    
     firstDayMonth(): Date {
-        const date = new Date()
-        const firstDay = new Date(date.getFullYear(), date.getMonth(), 1)
         const firstDayMonth = dayjs().startOf('month').toDate()
-        console.log(firstDay)
+        
         return firstDayMonth
     }
 

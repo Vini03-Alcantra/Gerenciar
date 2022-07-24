@@ -9,7 +9,8 @@ class GetBalanceCurrentMonthController {
                 GetBalanceCurrentMonthUseCase
             )
 
-            const getBalanceCurrent = getBalanceCurrentMonthUseCase.execute(req.user.uuid)
+            const getBalanceCurrent = await getBalanceCurrentMonthUseCase.execute(req.user.uuid)
+            console.log(getBalanceCurrent)
             return res.status(201).json(getBalanceCurrent)
         } catch (err) {
             return res.status(500).json(err.message)

@@ -5,12 +5,13 @@ import {IBalanceReposritory} from "@modules/balance/repositories/IBalanceReposit
 @injectable()
 class GetBalanceCurrentMonthUseCase {
     constructor(
-        @inject("GetBalanceRepository")
+        @inject("BalanceRepository")
         private getBalanceRepository: IBalanceReposritory
     ) {}
 
     async execute(auth_id: string): Promise<Number> {
         const getBalanceCurrentMonth = await this.getBalanceRepository.balanceMomentMonth(auth_id)
+        
         return getBalanceCurrentMonth;
     }
 }
