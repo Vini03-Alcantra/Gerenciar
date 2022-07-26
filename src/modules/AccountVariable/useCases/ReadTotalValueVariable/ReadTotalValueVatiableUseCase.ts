@@ -10,8 +10,8 @@ class ReadTotalValueVariableUseCase {
         private accountsConstantRepository: IAccountsConstantRepository
     ){}
 
-    async execute (): Promise<Number>{
-        const accountConstant = await this.accountsConstantRepository.totalValueMonth()
+    async execute (auth_id: string): Promise<Number>{
+        const accountConstant = await this.accountsConstantRepository.totalValueMonth(auth_id)
 
         return accountConstant
     }

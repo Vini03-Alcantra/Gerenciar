@@ -1,6 +1,6 @@
 import { Response, Request } from "express";
 import { container } from "tsyringe";
-import {GetBalanceCurrentMonthUseCase} from "./getBalanceCurrentMonthUseCase"
+import {GetBalanceCurrentMonthUseCase}  from "./GetBalanceCurrentMonthUseCase"
 
 class GetBalanceCurrentMonthController {
     async handle(req: Request, res: Response): Promise<Response>{
@@ -10,7 +10,7 @@ class GetBalanceCurrentMonthController {
             )
 
             const getBalanceCurrent = await getBalanceCurrentMonthUseCase.execute(req.user.uuid)
-            console.log(getBalanceCurrent)
+            
             return res.status(201).json(getBalanceCurrent)
         } catch (err) {
             return res.status(500).json(err.message)

@@ -7,7 +7,7 @@ class ReadAccountVariableController {
         try{
             const readAccountVariableUseCase = container.resolve(ReadAccountVariableUseCase)
 
-            const accountVariable = await readAccountVariableUseCase.execute()
+            const accountVariable = await readAccountVariableUseCase.execute(req.user.uuid)
 
             return res.status(201).json({accountVariable})            
         } catch (err){

@@ -11,8 +11,8 @@ class ReadAccountVariableUseCase {
         private accountVariableRepository: IAccountsVariableRepository
     ){}
 
-    async execute(): Promise<AccountVariable[]>{
-        const accountVariables = await this.accountVariableRepository.read()
+    async execute(auth_id: string): Promise<AccountVariable[]>{
+        const accountVariables = await this.accountVariableRepository.read(auth_id)
 
         return accountVariables
     }
