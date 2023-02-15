@@ -16,6 +16,8 @@ import { IPersonsTokensRepository } from "../../modules/person/repositories/IPer
 import { PersonsTokensRepository } from "../../modules/person/infra/typeorm/repositories/PersonsTokensRepository";
 import { IBalanceReposritory } from "../../modules/balance/repositories/IBalanceRepository"
 import { BalanceRepository } from "../../modules/balance/infra/repositories/BalanceRepository"
+import { IPersonDependentRepository } from "@modules/PersonDependent/repositories/IPersonDependentRepository";
+import { PersonDependentRepository } from "@modules/PersonDependent/infra/typeorm/repository/PersonDependetRepository";
 
 container.registerSingleton<IPersonRepository>(
     "PersonsRepository",
@@ -50,4 +52,9 @@ container.registerSingleton<IPersonsTokensRepository>(
 container.registerSingleton<IBalanceReposritory>(
     "BalanceRepository",
     BalanceRepository
+)
+
+container.registerSingleton<IPersonDependentRepository>(
+    "PersonsDependentsRepository",
+    PersonDependentRepository
 )

@@ -7,7 +7,8 @@ import { authenticatePersonRoute } from "./authenticate.routes";
 import { personRouter } from "./person.routes";
 import { rendaConstantRouter } from "./renda_constant.routes";
 import { rendaVariableRouter } from "./renda_variable.routes";
-import { balanceRouter } from "./balance.routes"
+import { balanceRouter } from "./balance.routes";
+import { personDependents } from "./person_dependents.routes"
 import {ensureAuthenticated} from "../../../../midlewares/ensure-authenticated"
 
 const router = Router()
@@ -18,6 +19,8 @@ router.use("/accountVariable", ensureAuthenticated, accountVariableRouter)
 router.use("/rendaConstant", ensureAuthenticated, rendaConstantRouter)
 router.use("/rendaVariable", ensureAuthenticated, rendaVariableRouter)
 router.use("/balance", ensureAuthenticated, balanceRouter)
+router.use("/personDependents", ensureAuthenticated, personDependents)
+
 router.use(authenticatePersonRoute)
 
 export {router}
