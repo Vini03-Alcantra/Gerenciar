@@ -1,4 +1,4 @@
-import { ICreatePersonDTO } from "modules/person/dtos/ICreatePersonDTO";
+import { ICreatePersonDTO } from "../../dtos/ICreatePersonDTO";
 import { Person } from "modules/person/infra/typeorm/entities/Person";
 import { IPersonRepository } from "modules/person/repositories/IPersonRepository";
 import { inject, injectable } from "tsyringe";
