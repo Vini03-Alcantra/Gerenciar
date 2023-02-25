@@ -1,0 +1,95 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Person {
+  id              String            @id
+  namePerson      String
+  agePerson       Int
+  emailPerson     String            @unique
+  birthday        String
+  cpf             String            @unique
+  created_at      DateTime?         @default(now())
+  updated_at      DateTime?         @default(now())
+  PersonToken     PersonToken[]
+  AccountConstant AccountConstant[]
+  PersonDependent PersonDependent[]
+  AccountVariable AccountVariable[]
+  SteadyIncome    SteadyIncome[]
+  VariableIncome  VariableIncome[]
+}
+
+model PersonToken {
+  id            String    @id
+  refresh_token String
+  fk_id_person  String
+  person        Person    @relation(fields: [fk_id_person], references: [id])
+  created_at    DateTime? @default(now())
+  updated_at    DateTime? @default(now())
+}
+
+model PersonDependent {
+  id                        String    @id
+  namePerson                String
+  emailPerson               String
+  birthday                  String
+  cpf                       String    @unique
+  fk_id_person_on_dependent String
+  person                    Person    @relation(fields: [fk_id_person_on_dependent], references: [id])
+  created_at                DateTime? @default(now())
+  updated_at                DateTime? @default(now())
+}
+
+model AccountConstant {
+  id                String    @id
+  nameOriginAccount String
+  accountType       String
+  dateAccount       String
+  fk_id_person      String
+  person            Person    @relation(fields: [fk_id_person], references: [id])
+  created_at        DateTime? @default(now())
+  updated_at        DateTime? @default(now())
+}
+
+model AccountVariable {
+  id                String    @id
+  nameOriginAccount String
+  valueAccount      Float
+  typeAccount       String
+  formPayment       String
+  plannedAccount    Boolean
+  fk_id_person      String
+  person            Person    @relation(fields: [fk_id_person], references: [id])
+  created_at        DateTime? @default(now())
+  updated_at        DateTime? @default(now())
+}
+
+model SteadyIncome {
+  id           String    @id
+  incomeOrigin String
+  valueIncome  Float
+  dateIncome   String
+  fk_id_person String
+  person       Person    @relation(fields: [fk_id_person], references: [id])
+  created_at   DateTime? @default(now())
+  updated_at   DateTime? @default(now())
+}
+
+model VariableIncome {
+  id           String    @id
+  incomeOrigin String
+  valueIncome  Float
+  dateIncome   String
+  fk_id_person String
+  person       Person    @relation(fields: [fk_id_person], references: [id])
+  created_at   DateTime? @default(now())
+  updated_at   DateTime? @default(now())
+}

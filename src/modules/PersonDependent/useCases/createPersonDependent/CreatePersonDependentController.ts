@@ -1,16 +1,18 @@
 import { Request, Response } from "express";
-import { CreatePersonDependentuseCase } from "./CreatePersonDependentUseCase";
-import { container } from "tsyringe";
+import {createPersonDependentUseCase} from "./index"
+
 class CreatePersonDependentController {
     async handle(req: Request, res: Response): Promise<Response>{
         try {
             const {namePerson, emailPerson, birthday, cpf, dependentOnId} = req.body
             
-            const createPersonDependentuseCase = container.resolve(
-                CreatePersonDependentuseCase
-            )
-
-            const personDependent = await createPersonDependentuseCase.execute({namePerson, emailPerson, birthday, cpf, dependentOnId})
+            const personDependent = await createPersonDependentUseCase.execute({
+                namePerson, 
+                emailPerson, 
+                birthday, 
+                cpf, 
+                dependentOnId
+            })
             
             return res.status(201).json(personDependent)
         } catch (err) {

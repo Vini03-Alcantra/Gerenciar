@@ -1,17 +1,19 @@
 import { ICreatePersonDependentDTO } from "@modules/PersonDependent/dtos/ICreatePersonDependentDTO";
-import { IPersonDependentRepository } from "modules/PersonDependent/repositories/IPersonDependentRepository";
+import { IPersonDependentRepository } from "@modules/PersonDependent/repositories/IPersonDependentRepository";
 import { getRepository, Repository } from "typeorm";
-import {PersonDependent} from "../entitties/PersonDependent"
+import {PersonDependent} from "../entities/PersonDependent"
 import {logger} from "../../../../../logger"
 class PersonDependentRepository implements IPersonDependentRepository {
     private repository: Repository<PersonDependent>
-
-    constructtor(){
+        
+    constructor(){
         this.repository = getRepository(PersonDependent)
     }
 
     async create(data: ICreatePersonDependentDTO): Promise<PersonDependent> {
         const {namePerson ,emailPerson, birthday, cpf, dependentOnId} = data
+        console.log(namePerson)
+        console.log(this.repository)
         try {
             const personDependent = this.repository.create({
                 namePerson, 
@@ -20,7 +22,7 @@ class PersonDependentRepository implements IPersonDependentRepository {
                 cpf, 
                 dependentOnPerson: dependentOnId
             })
-
+            console.log(personDependent)
             await this.repository.save(personDependent)
 
             return personDependent

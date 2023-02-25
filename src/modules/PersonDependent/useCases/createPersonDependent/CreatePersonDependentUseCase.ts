@@ -1,12 +1,10 @@
-import { ICreatePersonDependentDTO } from "@modules/PersonDependent/dtos/ICreatePersonDependentDTO";
-import { PersonDependent } from "@modules/PersonDependent/infra/typeorm/entitties/PersonDependent";
-import { IPersonDependentRepository } from "@modules/PersonDependent/repositories/IPersonDependentRepository";
+import { ICreatePersonDependentDTO } from "../../dtos/ICreatePersonDependentDTO";
+import { PersonDependent } from "../../infra/typeorm/entities/PersonDependent";
+import { IPersonDependentRepository } from "../../repositories/IPersonDependentRepository";
 import { inject, injectable } from "tsyringe";
 
-@injectable()
-class CreatePersonDependentuseCase {
+class CreatePersonDependentUseCase {
     constructor(
-        @inject("PersonsDependentsRepository")
         private personsDependentsRepository: IPersonDependentRepository
     ){}
 
@@ -25,4 +23,4 @@ class CreatePersonDependentuseCase {
     }
 }
 
-export {CreatePersonDependentuseCase}
+export {CreatePersonDependentUseCase}

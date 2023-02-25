@@ -1,7 +1,6 @@
 import { ICreatePersonTokenDTO } from "@modules/person/dtos/ICreatePersonTokenDTO";
 import { IPersonsTokensRepository } from "@modules/person/repositories/IPersonsTokensRepository";
 import { getRepository, Repository } from "typeorm";
-import { Person } from "../entities/Person";
 import { PersonToken } from "../entities/PersonTokens";
 
 class PersonsTokensRepository implements IPersonsTokensRepository {

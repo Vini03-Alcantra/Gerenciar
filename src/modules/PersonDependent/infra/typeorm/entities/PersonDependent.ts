@@ -1,4 +1,4 @@
-import { Person } from "modules/person/infra/typeorm/entities/Person";
+import { Person } from "../../../../person/infra/typeorm/entities/Person";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
 import {v4 as uuidV4} from "uuid"
 
@@ -22,7 +22,7 @@ class PersonDependent {
     @Column({name: "dependent_on_id"})
     dependentOnPerson: string;
 
-    @ManyToOne(type => Person, personDependent => PersonDependent)
+    @ManyToOne(() => Person)
     @JoinColumn({name: "dependent_on_id"})
     person: Person;
 

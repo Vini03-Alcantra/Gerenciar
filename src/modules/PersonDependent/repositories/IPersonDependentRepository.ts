@@ -1,5 +1,5 @@
 import { ICreatePersonDependentDTO } from "../dtos/ICreatePersonDependentDTO";
-import { PersonDependent } from "../infra/typeorm/entitties/PersonDependent";
+import { PersonDependent } from "../infra/typeorm/entities/PersonDependent";
 
 interface IPersonDependentRepository {
     create(data: ICreatePersonDependentDTO): Promise<PersonDependent>;
