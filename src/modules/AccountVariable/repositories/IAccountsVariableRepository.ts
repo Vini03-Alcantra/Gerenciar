@@ -1,6 +1,5 @@
 import { ICreateContaVariableDTO } from "../dtos/ICreateContaVariableDTO";
-import { AccountVariable } from "../infra/typeorm/entities/AccountVariable";
-
+import {AccountVariable} from "@prisma/client"
 interface IAccountsVariableRepository {
     create(auth_id: string, data: ICreateContaVariableDTO): Promise<AccountVariable>;
     read(auth_id: string): Promise<AccountVariable[]>;

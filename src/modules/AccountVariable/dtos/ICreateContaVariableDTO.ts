@@ -1,11 +1,11 @@
 interface ICreateContaVariableDTO {
     id?: string;
-    nomeOrigemConta: string;
-    valorConta: number;
+    nameOriginAccount: string;
+    valueAccount: number;
     tipoConta: string;
-    dataConta: Date;
-    formaPagamento: string;
-    contaPlanejada: boolean;    
+    dateAccount: string;
+    formPayment: string;
+    plannedAccount: boolean;    
 }
 
 export {ICreateContaVariableDTO}
