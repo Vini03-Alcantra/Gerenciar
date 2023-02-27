@@ -1,50 +1,50 @@
 import { IAccountsConstantRepository } from "modules/AccountConstant/repositories/IAccountsConstantRepository";
-import { getRepository, Repository } from "typeorm";
 import {ICreateAccountConstantDTO} from "../../../dtos/ICreateAccountConstantDTO"
-import { AccountConstant } from "../entities/AccountConstant";
 
+import {AccountConstant, PrismaClient} from "@prisma/client"
+import { v4 as uuidV4 } from "uuid";
+
+const prisma = new PrismaClient()
 class AccountsConstantRepository implements IAccountsConstantRepository {
-    private repository: Repository<AccountConstant>;
-
-    constructor(){
-        this.repository = getRepository(AccountConstant)
-    }
 
     async create(
         auth_id: string,
         {
         nameOriginAccount,
+        dateAccount,
         valueAccount, 
         tipoConta,
     }: ICreateAccountConstantDTO): Promise<AccountConstant> {
-        const accountConstant = this.repository.create({
-            nameOriginAccount,
-            valueAccount,
-            tipoConta,
-            id_person: auth_id,
-            dateAccount: new Date()
-        })    
-
-        await this.repository.save(accountConstant)
+        const id = uuidV4()
+        const accountConstant = prisma.accountConstant.create({
+            data: {
+                id,
+                dateAccount,
+                nameOriginAccount,
+                valueAccount,
+                accountType: tipoConta,
+                fk_id_person: auth_id,
+            }
+        })  
 
         return accountConstant
     }
 
     async read(auth_id: string): Promise<AccountConstant[]> {
-        const accountConstantList = await this.repository.find({
+        const accountConstantList = await prisma.accountConstant.findMany({
             where: {
-                id_person: auth_id
+                fk_id_person: auth_id
             }
-        });
+        })
 
         return accountConstantList
     }
 
     async totalValueMonth(auth_id: string): Promise<Number> {
         let renda = 0;
-        const accountConstantList = await this.repository.find({
+        const accountConstantList = await prisma.accountConstant.findMany({
             where: {
-                id_person: auth_id
+                fk_id_person: auth_id
             }
         });
         accountConstantList.filter((item) => {

@@ -52,6 +52,7 @@ model PersonDependent {
 model AccountConstant {
   id                String    @id
   nameOriginAccount String
+  valueAccount      Float
   accountType       String
   dateAccount       String
   fk_id_person      String
