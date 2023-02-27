@@ -1,29 +1,28 @@
 import { ICreatePersonDependentDTO } from "@modules/PersonDependent/dtos/ICreatePersonDependentDTO";
 import { IPersonDependentRepository } from "@modules/PersonDependent/repositories/IPersonDependentRepository";
-import { getRepository, Repository } from "typeorm";
-import {PersonDependent} from "../entities/PersonDependent"
+
 import {logger} from "../../../../../logger"
+import { v4 as uuidV4 } from "uuid";
+
+import { PrismaClient, PersonDependent } from "@prisma/client";
+
+const prisma = new PrismaClient()
 class PersonDependentRepository implements IPersonDependentRepository {
-    private repository: Repository<PersonDependent>
-        
-    constructor(){
-        this.repository = getRepository(PersonDependent)
-    }
 
     async create(data: ICreatePersonDependentDTO): Promise<PersonDependent> {
-        const {namePerson ,emailPerson, birthday, cpf, dependentOnId} = data
-        console.log(namePerson)
-        console.log(this.repository)
+        const {namePerson, emailPerson, birthday, cpf, dependentOnId} = data
+        const id = uuidV4()
         try {
-            const personDependent = this.repository.create({
-                namePerson, 
-                emailPerson, 
-                birthday, 
-                cpf, 
-                dependentOnPerson: dependentOnId
+            const personDependent = await prisma.personDependent.create({
+                data: {
+                    id,
+                    namePerson, 
+                    emailPerson, 
+                    birthday, 
+                    cpf, 
+                    fk_id_person_on_dependent:dependentOnId                    
+                }
             })
-            console.log(personDependent)
-            await this.repository.save(personDependent)
 
             return personDependent
         } catch (error) {
@@ -37,8 +36,10 @@ class PersonDependentRepository implements IPersonDependentRepository {
 
     async findByEmail(email: string): Promise<PersonDependent> {
         try {
-            const personDependent = await this.repository.findOne({
-                emailPerson: email
+            const personDependent = await prisma.personDependent.findFirst({
+                where: {                    
+                    emailPerson: email
+                }
             })
 
             return personDependent
@@ -53,8 +54,10 @@ class PersonDependentRepository implements IPersonDependentRepository {
 
     async findByCPF(cpf: string): Promise<PersonDependent> {
         try {
-            const personDependent = await this.repository.findOne({
-                cpf: cpf
+            const personDependent = await prisma.personDependent.findFirst({
+                where: {
+                    cpf
+                }
             })
             
             return personDependent
@@ -68,8 +71,8 @@ class PersonDependentRepository implements IPersonDependentRepository {
     }
     async findById(id: string): Promise<PersonDependent> {
         try {
-            const personDependent = await this.repository.findOne({
-                id
+            const personDependent = await prisma.personDependent.findFirst({
+                where: {id}
             })
             
             return personDependent
@@ -83,7 +86,7 @@ class PersonDependentRepository implements IPersonDependentRepository {
     }
     async find(): Promise<PersonDependent[]> {
         try {
-            const personDependentList = await this.repository.find()
+            const personDependentList = await prisma.personDependent.findMany()
             return personDependentList
         } catch (error) {
             logger.info(error)

@@ -1,6 +1,5 @@
 import { ICreatePersonDependentDTO } from "../dtos/ICreatePersonDependentDTO";
-import { PersonDependent } from "../infra/typeorm/entities/PersonDependent";
-
+import {PersonDependent} from "@prisma/client"
 interface IPersonDependentRepository {
     create(data: ICreatePersonDependentDTO): Promise<PersonDependent>;
     findByEmail(email: string): Promise<PersonDependent>;

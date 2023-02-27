@@ -2,7 +2,7 @@ interface ICreatePersonDependentDTO {
     id?: string;
     namePerson: string;    
     emailPerson: string;      
-    birthday: Date;
+    birthday: string;
     cpf: string;  
     dependentOnId: string
 }
