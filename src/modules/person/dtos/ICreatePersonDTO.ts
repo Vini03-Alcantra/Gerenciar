@@ -1,8 +1,8 @@
 interface ICreatePersonDTO {
-    nomePerson: string;
-    idadePerson: number;
+    namePerson: string;
+    agePerson: number;
     emailPerson: string;      
-    birthday: Date;
+    birthday: string;
     cpf: string;  
     id?: string;
 }

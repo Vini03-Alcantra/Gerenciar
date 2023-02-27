@@ -1,6 +1,6 @@
 interface ICreatePersonTokenDTO{
     person_id: string;
-    expires_date: Date;
+    expires_date: string;
     refresh_token: string;
 }
 

@@ -1,35 +1,35 @@
 import { AppError } from "../../../../../errors/AppError";
 import { ICreatePersonDTO } from "modules/person/dtos/ICreatePersonDTO";
 import { IPersonRepository } from "modules/person/repositories/IPersonRepository";
-import { getRepository, Repository } from "typeorm";
-import { Person } from "../entities/Person";
+
+import { PrismaClient, Person } from "@prisma/client";
+
+const prisma = new PrismaClient()
 
 class PersonsRepository implements IPersonRepository {
-    private repository: Repository<Person>
-    
-    constructor(){
-        this.repository = getRepository(Person)
-    }
-    
     async create({
-        nomePerson, 
+        namePerson, 
         birthday,
         cpf,
-        idadePerson,
+        agePerson,
         emailPerson,
         id
     }: ICreatePersonDTO): Promise<Person> {        
         try {
-            const person = this.repository.create({
-                nomePerson: nomePerson, 
-                idadePerson: idadePerson,
-                emailPerson: emailPerson,            
-                birthday: birthday,
-                cpf: cpf,
-                id: id
+            await prisma.person.create({
+                data: {
+                    namePerson, 
+                    birthday,
+                    cpf,
+                    agePerson,
+                    emailPerson,
+                    id
+                }      
             })
-    
-            await this.repository.save(person)
+
+            const person = await prisma.person.findFirst({where: {
+                id
+            }})
     
             return person
         } catch (err) {
@@ -39,7 +39,7 @@ class PersonsRepository implements IPersonRepository {
     
     async find(): Promise<Person[]> {
         try {
-            const persons = await this.repository.find()
+            const persons = await prisma.person.findMany()
 
             return persons
         } catch (error) {
@@ -48,16 +48,22 @@ class PersonsRepository implements IPersonRepository {
     }
 
     async findByEmail(email: string): Promise<Person> {
-        const emailPerson = await this.repository.findOne(
-            {emailPerson: email}
+        const emailPerson = await prisma.person.findFirst(
+            {
+                where: {
+                    emailPerson: email
+                }
+            }
         )
 
         return emailPerson
     }
 
     async findById(id: string): Promise<Person> {
-        const person = await this.repository.findOne(
-            {id}
+        const person = await prisma.person.findUnique(
+            {
+                where: {id}
+            }
         )
 
         return person

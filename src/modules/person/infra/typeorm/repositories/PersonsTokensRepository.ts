@@ -1,27 +1,26 @@
 import { ICreatePersonTokenDTO } from "@modules/person/dtos/ICreatePersonTokenDTO";
 import { IPersonsTokensRepository } from "@modules/person/repositories/IPersonsTokensRepository";
-import { getRepository, Repository } from "typeorm";
-import { PersonToken } from "../entities/PersonTokens";
+import { PrismaClient, PersonToken } from "@prisma/client";
+import { v4 as uuidV4 } from "uuid";
+
+const prisma = new PrismaClient()
 
 class PersonsTokensRepository implements IPersonsTokensRepository {
-    private repository: Repository<PersonToken>
-
-    constructor(){
-        this.repository = getRepository(PersonToken)
-    }
-
     async create({ 
         expires_date, 
         refresh_token, 
         person_id 
     }: ICreatePersonTokenDTO): Promise<PersonToken> {
-        const personToken = this.repository.create({
-            expires_date, 
-            refresh_token, 
-            person_id 
+        const id = uuidV4()
+        const personToken = await prisma.personToken.create({
+            data: {
+                id,
+                expires_date,
+                refresh_token,
+                fk_id_person: person_id
+            }
         })
 
-        await this.repository.save(personToken)
 
         return personToken
     }
@@ -30,9 +29,12 @@ class PersonsTokensRepository implements IPersonsTokensRepository {
         person_id: string, 
         refresh_token: string
     ): Promise<PersonToken> {
-        const usersTokens = await this.repository.findOne({
-            person_id,
-            refresh_token
+        const usersTokens = await prisma.personToken.findFirst({
+            where: {
+                fk_id_person: person_id                ,
+                refresh_token
+            }
+            
         })
 
         return usersTokens
@@ -41,13 +43,21 @@ class PersonsTokensRepository implements IPersonsTokensRepository {
     async deleteById(
         id: string
     ): Promise<void> {
-        await this.repository.delete(id)    
+        await prisma.personToken.delete({
+            where: {
+                id
+            }
+        }) 
     }
 
-    findByRefreshToken(
+    async findByRefreshToken(
         refresh_token: string
     ): Promise<PersonToken> {
-        const refreshToken = this.repository.findOne({refresh_token})
+        const refreshToken = await prisma.personToken.findFirst({
+            where: {
+                refresh_token
+            }
+        })         
 
         return refreshToken
     }

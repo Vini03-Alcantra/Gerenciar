@@ -1,7 +1,5 @@
-import { ICreatePersonDTO } from "../dtos/ICreatePersonDTO";
 import { ICreatePersonTokenDTO } from "../dtos/ICreatePersonTokenDTO";
-import { Person } from "../infra/typeorm/entities/Person";
-import { PersonToken } from "../infra/typeorm/entities/PersonTokens";
+import {PersonToken} from "@prisma/client"
 
 interface IPersonsTokensRepository {
     create({
