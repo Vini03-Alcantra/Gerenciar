@@ -1,8 +1,8 @@
 interface ICreateRendaVariableDTO {
     id?: string;
-    origemRendaVariable: string;
-    valorRendaVariavel: number;
-    dataRendaVariavel: Date;
+    incomeOrigin: string;
+    valueIncome: number;
+    dateIncome: string;
 }
 
 export {ICreateRendaVariableDTO}

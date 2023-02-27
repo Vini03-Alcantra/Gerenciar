@@ -10,8 +10,8 @@ const prisma = new PrismaClient()
 class PersonDependentRepository implements IPersonDependentRepository {
 
     async create(data: ICreatePersonDependentDTO): Promise<PersonDependent> {
-        const {namePerson, emailPerson, birthday, cpf, dependentOnId} = data
-        const id = uuidV4()
+        const {id, namePerson, emailPerson, birthday, cpf, dependentOnId} = data
+        
         try {
             const personDependent = await prisma.personDependent.create({
                 data: {

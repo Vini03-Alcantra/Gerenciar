@@ -1,9 +1,8 @@
 import { ICreateRendaVariableDTO } from "../dtos/ICreateRendaVariableDTO";
-import { RendaVariavel } from "../infra/typeorm/entities/RendaVariavel";
-
+import {VariableIncome} from "@prisma/client"
 interface IRendasVariableRepository {
-    create(auth_id: string, data: ICreateRendaVariableDTO): Promise<RendaVariavel>;
-    read(auth_id: string): Promise<RendaVariavel[]>;
+    create(auth_id: string, data: ICreateRendaVariableDTO): Promise<VariableIncome>;
+    read(auth_id: string): Promise<VariableIncome[]>;
     total(auth_id: string): Promise<Number>;
 }
 

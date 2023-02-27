@@ -1,51 +1,51 @@
 import { ICreateRendaConstantDTO } from "modules/rendasConstant/dtos/ICreateRendaConstantDTO";
 import { IRendaConstantRepository } from "modules/rendasConstant/repositories/IRendaConstantRepository";
-import { getRepository, Repository } from "typeorm";
-import { RendaConstant } from "../entities/RendaConstant";
+
+import {SteadyIncome, PrismaClient} from "@prisma/client"
+
+const prisma = new PrismaClient()
 
 class RendaConstantRepository implements IRendaConstantRepository {
-    private repository: Repository<RendaConstant>;
 
-    constructor(){
-        this.repository = getRepository(RendaConstant)
-    }    
-    
     async create(
         auth_id: string,
         {
-        origemRenda, 
-        valorRenda, 
-        dataRenda
-    }: ICreateRendaConstantDTO): Promise<RendaConstant> {
-        const rendaConstant = this.repository.create({
-            origemRenda,
-            valorRenda,
-            dataRenda,
-            id_person: auth_id
+            id,
+            incomeOrigin,
+            valueIncome,
+            dateIncome
+    }: ICreateRendaConstantDTO): Promise<SteadyIncome> {
+        const steadyIncome = await prisma.steadyIncome.create({
+            data: {
+                id,
+                incomeOrigin,
+                valueIncome,
+                dateIncome,
+                fk_id_person: auth_id
+            }
         })
-
-        await this.repository.save(rendaConstant)
-        
-        return rendaConstant
+        return steadyIncome 
     }
 
-    async read(auth_id: string): Promise<RendaConstant[]> {
-        const rendasConstant = await this.repository.find({where: {
-            id_person: auth_id
-        }})
+    async read(auth_id: string): Promise<SteadyIncome[]> {
+        const steadyIncome = await prisma.steadyIncome.findMany({
+            where: {
+                fk_id_person: auth_id
+            }
+        })
 
-        return rendasConstant
+        return steadyIncome
     }
 
     async total(auth_id: string): Promise<Number> {
         let total = 0;
-        const rendasConstant = await this.repository.find({
+        const rendasConstant = await prisma.steadyIncome.findMany({
             where: {
-                id_person: auth_id
+                fk_id_person: auth_id
             }
         })
         rendasConstant.forEach((item) => {
-            total += Number(item.valorRenda)
+            total += Number(item.valueIncome)
         })
         return total
     }

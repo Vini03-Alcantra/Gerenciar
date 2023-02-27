@@ -1,8 +1,9 @@
 interface ICreateRendaConstantDTO {
     id?: string;
-    origemRenda: string;
-    valorRenda: number;
-    dataRenda?: Date;    
+    incomeOrigin: string;
+    valueIncome: number;
+    dateIncome: string;
+    fk_id_person: string;
 }
 
 export {ICreateRendaConstantDTO}
