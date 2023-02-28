@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
-import { container } from "tsyringe";
-import { RefreshTokenUseCase } from "./RefreshTokenUseCase";
+import { refreshTokenUseCase } from "./index";
 
 class RefreshTokenController {
     async handle(req: Request, res: Response): Promise<Response>{
@@ -8,8 +7,6 @@ class RefreshTokenController {
             req.body.token ||
             req.headers["s-access-token"] ||
             req.query.token
-
-        const refreshTokenUseCase = container.resolve(RefreshTokenUseCase)
 
         const refresh_token = await refreshTokenUseCase.execute(token)
 

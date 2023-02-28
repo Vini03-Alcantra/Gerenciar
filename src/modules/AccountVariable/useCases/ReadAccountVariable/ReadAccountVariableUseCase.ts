@@ -1,12 +1,8 @@
-import { inject, injectable } from "tsyringe";
 import {IAccountsVariableRepository} from "modules/AccountVariable/repositories/IAccountsVariableRepository"
 import { AccountVariable } from "@prisma/client";
 
-
-@injectable()
 class ReadAccountVariableUseCase {
     constructor(
-        @inject("AccountsVariableRepository")
         private accountVariableRepository: IAccountsVariableRepository
     ){}
 

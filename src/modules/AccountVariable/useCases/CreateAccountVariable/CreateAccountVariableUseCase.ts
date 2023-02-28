@@ -1,13 +1,10 @@
 import {ICreateContaVariableDTO} from "modules/AccountVariable/dtos/ICreateContaVariableDTO"
-import { inject, injectable } from "tsyringe";
 import {IAccountsVariableRepository} from "modules/AccountVariable/repositories/IAccountsVariableRepository"
 import { AccountVariable } from "@prisma/client";
 
 
-@injectable()
 class CreateAccountVariableUseCase {
     constructor(
-        @inject("AccountsVariableRepository")
         private accountVariableRepository: IAccountsVariableRepository
     ){}
 

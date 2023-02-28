@@ -1,11 +1,8 @@
 import { AccountConstant } from "@prisma/client";
 import { IAccountsConstantRepository } from "modules/AccountConstant/repositories/IAccountsConstantRepository";
-import { inject, injectable } from "tsyringe";
 
-@injectable()
 class ReadAccountConstantUseCase {
     constructor(
-        @inject("AccountsConstantRepository")
         private accountsConstantRepository: IAccountsConstantRepository
     ){}
 

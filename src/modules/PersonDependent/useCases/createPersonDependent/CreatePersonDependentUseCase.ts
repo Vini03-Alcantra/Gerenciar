@@ -1,7 +1,6 @@
+import { PersonDependent } from "@prisma/client";
 import { ICreatePersonDependentDTO } from "../../dtos/ICreatePersonDependentDTO";
-import { PersonDependent } from "../../infra/typeorm/entities/PersonDependent";
 import { IPersonDependentRepository } from "../../repositories/IPersonDependentRepository";
-import { inject, injectable } from "tsyringe";
 
 class CreatePersonDependentUseCase {
     constructor(

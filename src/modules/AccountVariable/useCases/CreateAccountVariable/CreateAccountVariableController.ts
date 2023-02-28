@@ -1,25 +1,19 @@
 import { Request, Response } from "express";
-import { container } from "tsyringe";
-import { CreateAccountVariableUseCase } from "./CreateAccountVariableUseCase";
-
+import { createAccountVariableUseCase } from "./index";
 class CreateAccountVariableController {
     async handle(req: Request, res: Response): Promise<Response>{        
         try{
-            const {nomeOrigemConta, valorConta, tipoConta, dataConta, formaPagamento, contaPlanejada, idPerson} = req.body;
+            const {nameOriginAccount, valueAccount, tipoConta, dateAccount, formPayment, plannedAccount} = req.body;
             
-            const createAccountVariableUseCase = container.resolve(
-                CreateAccountVariableUseCase
-            )
-
             const accountVariable = await createAccountVariableUseCase.execute(
                 req.user.uuid,
                 {
-                nomeOrigemConta,
-                valorConta,
+                nameOriginAccount,
+                valueAccount,
                 tipoConta,
-                dataConta,
-                formaPagamento,
-                contaPlanejada
+                dateAccount,
+                formPayment,
+                plannedAccount
             })
 
             return res.status(201).json({accountVariable})            

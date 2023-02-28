@@ -1,14 +1,9 @@
 import { Request, Response } from "express";
-import { container } from "tsyringe";
-import { ReadRendaVariableUseCase } from "./ReadRentalVariableUseCase";
+import { readRendaVariableUseCase } from "./index";
 
 class ReadRendaVariableController {
     async handle(req: Request, res: Response): Promise<Response>{
         try {
-            const readRendaVariableUseCase = container.resolve(
-                ReadRendaVariableUseCase
-            )
-
             const rendaVariavel = await readRendaVariableUseCase.execute(req.user.uuid)
 
             return res.status(201).json({rendaVariavel})

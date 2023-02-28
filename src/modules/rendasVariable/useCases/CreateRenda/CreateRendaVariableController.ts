@@ -1,22 +1,17 @@
 import { Request, Response } from "express";
-import { container } from "tsyringe";
-import { CreateRendaVariableUseCase } from "./CreateRendaVariableUseCase";
+import { createRendaVariableUseCase } from "./index";
 
 class CreateRendaVariableController {
     async handle(req: Request, res: Response): Promise<Response>{
         try {
-            const {origemRendaVariable, valorRendaVariavel, dataRendaVariavel, idPerson} = req.body
+            const {incomeOrigin, valueIncome, dateIncome} = req.body
 
-            const createRendaVariavel = container.resolve(
-                CreateRendaVariableUseCase
-            )
-
-            const rendaVariavel = await createRendaVariavel.execute(
+            const rendaVariavel = await createRendaVariableUseCase.execute(
                 req.user.uuid,
                 {
-                origemRendaVariable, 
-                valorRendaVariavel, 
-                dataRendaVariavel
+                    incomeOrigin,
+                    valueIncome,
+                    dateIncome
             })
 
             return res.status(201).json({rendaVariavel})

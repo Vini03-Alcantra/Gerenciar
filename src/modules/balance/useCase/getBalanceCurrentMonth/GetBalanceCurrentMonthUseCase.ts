@@ -1,11 +1,7 @@
-import { inject, injectable } from "tsyringe";
-
 import {IBalanceReposritory} from "@modules/balance/repositories/IBalanceRepository"
 
-@injectable()
 class GetBalanceCurrentMonthUseCase {
     constructor(
-        @inject("BalanceRepository")
         private getBalanceRepository: IBalanceReposritory
     ) {}
 

@@ -1,9 +1,7 @@
-import { inject, injectable } from "tsyringe";
 import { IAccountsConstantRepository } from "modules/AccountConstant/repositories/IAccountsConstantRepository";
-@injectable()
+
 class ReadTotalValueAccountConstantUseCase {
     constructor(
-        @inject("AccountsConstantRepository")
         private accountsConstantRepository: IAccountsConstantRepository
     ){}
 

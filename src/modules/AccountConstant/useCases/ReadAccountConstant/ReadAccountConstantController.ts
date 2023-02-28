@@ -1,14 +1,9 @@
 import { Response, Request } from "express";
-import { container } from "tsyringe";
-import { ReadAccountConstantUseCase } from "./ReadAccountConstantUseCase";
+import { readAccountConstantUseCase } from "./index";
 
 class ReadAccountConstantController {
     async handle(req: Request, res: Response): Promise<Response>{
         try {
-            const readAccountConstantUseCase = container.resolve(
-                ReadAccountConstantUseCase
-            )
-
             const accountConstant = await readAccountConstantUseCase.execute(req.user.uuid)
 
             return res.status(201).json({accountConstant})

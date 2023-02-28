@@ -1,6 +1,6 @@
 import { Response, Request } from "express";
 import { container } from "tsyringe";
-import {GetBalanceCurrentMonthUseCase}  from "./GetBalanceCurrentMonthUseCase"
+import { GetBalanceCurrentMonthUseCase }  from "./GetBalanceCurrentMonthUseCase"
 
 class GetBalanceCurrentMonthController {
     async handle(req: Request, res: Response): Promise<Response>{

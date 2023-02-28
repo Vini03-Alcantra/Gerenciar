@@ -1,12 +1,9 @@
 import { ICreatePersonDTO } from "../../dtos/ICreatePersonDTO";
 import { IPersonRepository } from "modules/person/repositories/IPersonRepository";
-import { inject, injectable } from "tsyringe";
 import { Person } from "@prisma/client";
 
-@injectable()
 class CreatePersonUseCase {
     constructor(
-        @inject("PersonsRepository")
         private personsRepository: IPersonRepository
     ){}
 

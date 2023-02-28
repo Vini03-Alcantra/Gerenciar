@@ -1,23 +1,17 @@
 import { Response, Request } from "express";
-import { container } from "tsyringe";
-import { CreateRendaConstantUseCase } from "./CreateRendaConstantUseCase";
+import { createRendaConstantUseCase } from "./index";
 
 
 class CreateRendaContantController {
     async handle(req: Request, res: Response): Promise<Response>{
         try {
-            const { origemRenda, valorRenda, dataRenda, id_person} = req.body;
-            
-            const createRendaConstantUseCase = container.resolve(
-                CreateRendaConstantUseCase
-            )
-
+            const { incomeOrigin, valueIncome, dateIncome } = req.body;
             const rendaConstant = await createRendaConstantUseCase.execute(
-                req.user.uuid,
                 {
-                origemRenda, 
-                valorRenda, 
-                dataRenda,                
+                    fk_id_person: req.user.uuid,
+                    incomeOrigin, 
+                    valueIncome, 
+                    dateIncome                
             })
 
             return res.status(201).json(rendaConstant)

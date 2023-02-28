@@ -1,6 +1,6 @@
 
 import { IBalanceReposritory } from "@modules/balance/repositories/IBalanceRepository";
-import { DayjsDateProvider } from "../../../../shared/container/providers/DateProvider/implementations/DayjsDateProvider";
+import { DayjsDateProvider } from "../../../../shared/providers/DateProvider/implementations";
 
 import { getRepository, Repository } from "typeorm";
 import { AccountConstant } from "../../../../modules/AccountConstant/infra/typeorm/entities/AccountConstant";

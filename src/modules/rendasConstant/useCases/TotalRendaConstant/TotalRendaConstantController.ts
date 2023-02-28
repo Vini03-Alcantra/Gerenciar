@@ -1,15 +1,10 @@
 import { Response, Request } from "express";
-import { container } from "tsyringe";
-import { TotalRendaConstantUseCase } from "./TotalRendaConstantUseCase";
+import { totalRendaConstantUseCase } from "./index";
 
 
 class TotalRendaConstantController {
     async handle(req: Request, res: Response): Promise<Response>{
-        try {            
-            const totalRendaConstantUseCase = container.resolve(
-                TotalRendaConstantUseCase
-            )
-
+        try {
             const rendaConstant = await totalRendaConstantUseCase.execute(req.user.uuid)
 
             return res.status(201).json(rendaConstant)

@@ -1,15 +1,12 @@
-import { IAccountsConstantRepository } from "modules/AccountConstant/repositories/IAccountsConstantRepository";
-import { inject, injectable } from "tsyringe";
+import { IAccountsVariableRepository } from "modules/AccountVariable/repositories/IAccountsVariableRepository";
 
-@injectable()
 class ReadTotalValueVariableUseCase {
     constructor(
-        @inject("AccountsVariableRepository")
-        private accountsConstantRepository: IAccountsConstantRepository
+        private accountsVariableRepository: IAccountsVariableRepository
     ){}
 
     async execute (auth_id: string): Promise<Number>{
-        const accountConstant = await this.accountsConstantRepository.totalValueMonth(auth_id)
+        const accountConstant = await this.accountsVariableRepository.totalValueMonth(auth_id)
 
         return accountConstant
     }

@@ -1,16 +1,12 @@
-import { inject, injectable } from "tsyringe";
-import { RendaConstant } from "../../infra/typeorm/entities/RendaConstant";
 import { IRendaConstantRepository } from "../../repositories/IRendaConstantRepository";
+import { SteadyIncome } from "@prisma/client";
 
-@injectable()
-class ReadRendaConstantUseCase {
-    
+class ReadRendaConstantUseCase {    
     constructor(
-        @inject("RendaConstantRepository")
         private rendaConstantRepository: IRendaConstantRepository
     ){}
 
-    async execute(auth_id: string): Promise<RendaConstant[]>{        
+    async execute(auth_id: string): Promise<SteadyIncome[]>{        
         const rendaConstant = await this.rendaConstantRepository.read(auth_id)
 
         return rendaConstant

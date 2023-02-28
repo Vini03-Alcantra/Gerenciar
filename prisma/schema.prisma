@@ -30,7 +30,7 @@ model Person {
 model PersonToken {
   id            String    @id
   refresh_token String
-  expires_date  String
+  expires_date  DateTime
   fk_id_person  String
   person        Person    @relation(fields: [fk_id_person], references: [id])
   created_at    DateTime? @default(now())

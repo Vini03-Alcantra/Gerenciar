@@ -8,9 +8,9 @@ const prisma = new PrismaClient()
 class RendaConstantRepository implements IRendaConstantRepository {
 
     async create(
-        auth_id: string,
         {
             id,
+            fk_id_person,
             incomeOrigin,
             valueIncome,
             dateIncome
@@ -21,7 +21,7 @@ class RendaConstantRepository implements IRendaConstantRepository {
                 incomeOrigin,
                 valueIncome,
                 dateIncome,
-                fk_id_person: auth_id
+                fk_id_person
             }
         })
         return steadyIncome 

@@ -1,10 +1,7 @@
-import { inject, injectable } from "tsyringe";
 import { IRendasVariableRepository } from "../../repositories/IRendasVariables";
 
-@injectable()
 class TotalRendaVariableUseCase {
     constructor(
-        @inject("RendaVariableRepository")
         private rendaVariableRepository: IRendasVariableRepository
     ){}
 

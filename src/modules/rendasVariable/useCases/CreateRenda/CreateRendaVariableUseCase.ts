@@ -1,29 +1,27 @@
 import { inject, injectable } from "tsyringe";
 import { ICreateRendaVariableDTO } from "../../dtos/ICreateRendaVariableDTO";
-import { RendaVariavel } from "../../infra/typeorm/entities/RendaVariavel";
+import {SteadyIncome} from "@prisma/client"
 import { IRendasVariableRepository } from "../../repositories/IRendasVariables";
 
 
-@injectable()
 class CreateRendaVariableUseCase {
     constructor(
-        @inject("RendaVariableRepository")
         private rendaVariableRepository: IRendasVariableRepository
     ){}
 
     async execute(
         auth_id: string,
-        {
-        origemRendaVariable,
-        valorRendaVariavel,
-        dataRendaVariavel
-    }: ICreateRendaVariableDTO): Promise<RendaVariavel>{
+    {
+        incomeOrigin,
+        valueIncome,
+        dateIncome
+    }: ICreateRendaVariableDTO): Promise<SteadyIncome>{
         const rendaVariavel = await this.rendaVariableRepository.create(
             auth_id,
             {
-            origemRendaVariable,
-            valorRendaVariavel,
-            dataRendaVariavel
+                incomeOrigin,
+                valueIncome,
+                dateIncome
         })
 
         return rendaVariavel

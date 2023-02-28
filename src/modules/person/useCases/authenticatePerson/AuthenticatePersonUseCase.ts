@@ -1,11 +1,10 @@
 import { IPersonRepository } from "@modules/person/repositories/IPersonRepository";
 import auth from "../../../../config/auth";
-
-import { inject, injectable } from "tsyringe";
-import { sign } from "jsonwebtoken";
-import { IDateProvider } from "@shared/container/providers/DateProvider/IDateProvider";
+import { IDateProvider } from "@shared/providers/DateProvider/IDateProvider";
 import { IPersonsTokensRepository } from "@modules/person/repositories/IPersonsTokensRepository";
 import { AppError } from "../../../../errors/AppError";
+
+import { sign } from "jsonwebtoken";
 
 interface IRequest {
     email: string;
@@ -21,14 +20,10 @@ interface IResponse {
     refresh_token: string;
 }
 
-@injectable()
 class AuthenticatePersonUseCase {
     constructor(
-        @inject("PersonsRepository")
-        private personsRepository: IPersonRepository,
-        @inject("DayjsDateProvider")
-        private dateProvider: IDateProvider,
-        @inject("PersonsTokensRepository")
+        private personsRepository: IPersonRepository,        
+        private dateProvider: IDateProvider,        
         private personsTokensRepository: IPersonsTokensRepository
     ){}
     

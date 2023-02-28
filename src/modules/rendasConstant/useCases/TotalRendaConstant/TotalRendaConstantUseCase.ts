@@ -1,11 +1,8 @@
-import { inject, injectable } from "tsyringe";
 import { IRendaConstantRepository } from "../../repositories/IRendaConstantRepository";
 
-@injectable()
 class TotalRendaConstantUseCase {
     
     constructor(
-        @inject("RendaConstantRepository")
         private rendaConstantRepository: IRendaConstantRepository
     ){}
 
