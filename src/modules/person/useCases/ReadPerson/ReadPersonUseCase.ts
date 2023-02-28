@@ -1,4 +1,4 @@
-import { Person } from "../../../../modules/person/infra/typeorm/entities/Person";
+import { Person } from "@prisma/client";
 import { IPersonRepository } from "modules/person/repositories/IPersonRepository";
 import { inject, injectable } from "tsyringe";
 

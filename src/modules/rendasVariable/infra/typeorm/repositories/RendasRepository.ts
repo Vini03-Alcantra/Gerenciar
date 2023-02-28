@@ -45,7 +45,7 @@ class RendasVariableRepository implements IRendasVariableRepository {
         })
         
         rendasVariavel.filter((item) => {
-            renda += Number(item.valueIncome)
+            renda += Number(item.valueIncome    )
         })
 
         return renda

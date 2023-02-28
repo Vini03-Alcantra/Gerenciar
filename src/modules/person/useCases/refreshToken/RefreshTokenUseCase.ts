@@ -4,7 +4,6 @@ import { IPersonsTokensRepository } from "@modules/person/repositories/IPersonsT
 import { IDateProvider } from "@shared/container/providers/DateProvider/IDateProvider";
 import { sign, verify } from "jsonwebtoken";
 import { inject, injectable } from "tsyringe";
-import { IPersonRepository } from "@modules/person/repositories/IPersonRepository";
 
 interface IPayload {
     sub: string;
@@ -41,8 +40,9 @@ class RefreshTokenUseCase {
             expiresIn: auth.expires_in_refresh_token
         })
 
+        const days_expire_date = auth.expires_refresh_token_days;
         const expires_date = this.dateProvider.addDays(
-            auth.expires_refresh_token_days
+            parseInt(days_expire_date)
         )
 
         await this.personsTokensRepository.create({

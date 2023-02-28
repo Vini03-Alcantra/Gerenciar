@@ -1,7 +1,7 @@
 import {ICreateContaVariableDTO} from "modules/AccountVariable/dtos/ICreateContaVariableDTO"
-import { AccountVariable } from "modules/AccountVariable/infra/typeorm/entities/AccountVariable";
 import { inject, injectable } from "tsyringe";
 import {IAccountsVariableRepository} from "modules/AccountVariable/repositories/IAccountsVariableRepository"
+import { AccountVariable } from "@prisma/client";
 
 
 @injectable()
@@ -14,22 +14,22 @@ class CreateAccountVariableUseCase {
     async execute(
         auth_id: string, 
         {
-        nomeOrigemConta,
-        valorConta,
-        tipoConta,
-        dataConta,
-        formaPagamento,
-        contaPlanejada
+            nameOriginAccount,
+            valueAccount,
+            tipoConta,
+            dateAccount,
+            formPayment,
+            plannedAccount
     }: ICreateContaVariableDTO): Promise<AccountVariable>{
         const accountVariable = await this.accountVariableRepository.create(
             auth_id,
             {
-            nomeOrigemConta,
-            valorConta,
-            tipoConta,
-            dataConta,
-            formaPagamento,
-            contaPlanejada,
+                nameOriginAccount,
+                valueAccount,
+                tipoConta,
+                dateAccount,
+                formPayment,
+                plannedAccount
         })
 
         return accountVariable

@@ -1,7 +1,6 @@
-import {ICreateContaVariableDTO} from "modules/AccountVariable/dtos/ICreateContaVariableDTO"
-import { AccountVariable } from "modules/AccountVariable/infra/typeorm/entities/AccountVariable";
 import { inject, injectable } from "tsyringe";
 import {IAccountsVariableRepository} from "modules/AccountVariable/repositories/IAccountsVariableRepository"
+import { AccountVariable } from "@prisma/client";
 
 
 @injectable()

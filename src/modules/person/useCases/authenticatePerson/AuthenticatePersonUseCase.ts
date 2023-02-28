@@ -79,7 +79,7 @@ class AuthenticatePersonUseCase {
         const tokenReturn: IResponse =  {
             token,
             person: {
-                name: person.nomePerson,
+                name: person.namePerson,
                 email: person.emailPerson
             },
             refresh_token 

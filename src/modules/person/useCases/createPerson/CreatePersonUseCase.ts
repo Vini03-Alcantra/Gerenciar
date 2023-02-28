@@ -1,7 +1,7 @@
 import { ICreatePersonDTO } from "../../dtos/ICreatePersonDTO";
-import { Person } from "../../../../modules/person/infra/typeorm/entities/Person";
 import { IPersonRepository } from "modules/person/repositories/IPersonRepository";
 import { inject, injectable } from "tsyringe";
+import { Person } from "@prisma/client";
 
 @injectable()
 class CreatePersonUseCase {
@@ -11,15 +11,15 @@ class CreatePersonUseCase {
     ){}
 
     async execute({
-        nomePerson,
-        idadePerson,
+        namePerson,
+        agePerson,
         emailPerson,
         birthday, 
         cpf
     }: ICreatePersonDTO): Promise<Person>{
         const persons = await this.personsRepository.create({
-            nomePerson, 
-            idadePerson, 
+            namePerson, 
+            agePerson, 
             emailPerson,
             birthday, 
             cpf
