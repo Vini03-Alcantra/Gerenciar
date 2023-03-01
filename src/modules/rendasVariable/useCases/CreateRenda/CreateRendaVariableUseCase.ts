@@ -1,9 +1,7 @@
-import { inject, injectable } from "tsyringe";
 import { ICreateRendaVariableDTO } from "../../dtos/ICreateRendaVariableDTO";
 import {SteadyIncome} from "@prisma/client"
 import { IRendasVariableRepository } from "../../repositories/IRendasVariables";
-
-
+import { v4 as uuidV4 } from "uuid";
 class CreateRendaVariableUseCase {
     constructor(
         private rendaVariableRepository: IRendasVariableRepository
@@ -16,9 +14,11 @@ class CreateRendaVariableUseCase {
         valueIncome,
         dateIncome
     }: ICreateRendaVariableDTO): Promise<SteadyIncome>{
-        const rendaVariavel = await this.rendaVariableRepository.create(
+        const id = uuidV4();
+        const rendaVariavel = await this.rendaVariableRepository.create(            
             auth_id,
             {
+                id,
                 incomeOrigin,
                 valueIncome,
                 dateIncome

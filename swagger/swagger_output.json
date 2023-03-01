@@ -1,0 +1,172 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "REST API",
+    "description": ""
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/person/": {
+      "post": {
+        "description": "Route for person. you can insert the data of your person_dependent",
+        "parameters": [],
+        "responses": {}
+      },
+      "get": {
+        "description": "Route for person_dependent. you can get person",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/accountConstant/": {
+      "post": {
+        "description": "Route for account_constant. you can insert data of account constant in the system",
+        "parameters": [],
+        "responses": {}
+      },
+      "get": {
+        "description": "Route for account_constant. you can receive the list of all the accounts",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/accountConstant/total": {
+      "get": {
+        "description": "Route for account_constant. you can see the total value of the accounts",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/accountVariable/": {
+      "post": {
+        "description": "Route for account_variable. you can insert data of account variable in the system",
+        "parameters": [],
+        "responses": {}
+      },
+      "get": {
+        "description": "Route for account_variable. you can receive the list of all the accounts",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/accountVariable/total": {
+      "get": {
+        "description": "Route for account_variable. you can see the total value of the accounts",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/rendaConstant/": {
+      "post": {
+        "description": "Route for renda constant. you can insert an renda_constant",
+        "parameters": [],
+        "responses": {}
+      },
+      "get": {
+        "description": "Route for renda constant. you can get a list of renda_constant",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/rendaConstant/total": {
+      "get": {
+        "description": "Route for renda constant. you can get a result of renda_constant",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/rendaVariable/": {
+      "post": {
+        "description": "Route for renda variable. you can insert an renda_variable",
+        "parameters": [],
+        "responses": {}
+      },
+      "get": {
+        "description": "Route for renda variable. you can get a list of renda_variable",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/rendaVariable/total": {
+      "get": {
+        "description": "Route for renda variable. you can get a result of renda_variable",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/balance/month": {
+      "get": {
+        "description": "Route for balance. you can see the total of yor sald",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/personDependents/": {
+      "post": {
+        "description": "Route for person_dependent. you can insert the data of your person_dependent",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/personDependents/cpf/{cpf}": {
+      "get": {
+        "description": "Route for person_dependent. you can get through cpf your person_dependent",
+        "parameters": [
+          {
+            "name": "cpf",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/personDependents/email/{email}": {
+      "get": {
+        "description": "Route for person_dependent. you can get through email your person_dependent",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/personDependents/id/{id}": {
+      "get": {
+        "description": "Route for person_dependent. you can get through id your person_dependent",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/sessions": {
+      "post": {
+        "description": "Route for user authentication.",
+        "parameters": [],
+        "responses": {}
+      }
+    }
+  }
+}

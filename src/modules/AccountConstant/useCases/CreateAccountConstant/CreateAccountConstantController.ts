@@ -5,14 +5,15 @@ import { createAccountConstantUseCase } from "./index";
 class CreateAccountConstantController {
     async handle(req: Request, res: Response): Promise<Response>{
         try {
-            const {nameOriginAccount, valueAccount, tipoConta} = req.body;            
+            const {nameOriginAccount, valueAccount, tipoConta, dateAccount} = req.body;            
 
             const accountConstant = await createAccountConstantUseCase.execute(
                 req.user.uuid,
                 {
                     nameOriginAccount, 
                     tipoConta,
-                    valueAccount                    
+                    valueAccount,
+                    dateAccount                    
                 }
             )
 

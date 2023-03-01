@@ -1,7 +1,7 @@
 import { ICreatePersonDependentDTO } from "@modules/PersonDependent/dtos/ICreatePersonDependentDTO";
 import { IPersonDependentRepository } from "@modules/PersonDependent/repositories/IPersonDependentRepository";
 
-import {logger} from "../../../../../logger"
+import {logger} from "../../../../logger"
 import { v4 as uuidV4 } from "uuid";
 
 import { PrismaClient, PersonDependent } from "@prisma/client";

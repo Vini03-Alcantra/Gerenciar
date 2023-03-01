@@ -6,6 +6,12 @@ const authenticatePersonController = new AuthenticatePersonController()
 
 const authenticatePersonRoute = Router()
 
-authenticatePersonRoute.post("/sessions", authenticatePersonController.handle)
+authenticatePersonRoute.post("/sessions", 
+    /*
+        #swagger.description = 'Route for user authentication.'
+    */
+    authenticatePersonController.handle    
+)
+ 
 
 export {authenticatePersonRoute}

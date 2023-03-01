@@ -1,16 +1,13 @@
 import express from "express";
 import "dotenv/config"
-import "express-async-errors";
 import { router } from "./routes";
-import "../../container";
 import "reflect-metadata";
-import createConnection  from "../typeorm";
+import swaggerFile from "../../../../swagger/swagger_output.json"
+import swaggerUi from "swagger-ui-express"
 
-createConnection()
 const app = express()
-
 app.use(express.json())
-
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 app.use("/", router)
 
 export {app}

@@ -5,7 +5,6 @@ import { inject, injectable } from "tsyringe";
 @injectable()
 class ReadPersonUseCase {
     constructor(
-        @inject("PersonsRepository")
         private personsRepository: IPersonRepository
     ){}
 

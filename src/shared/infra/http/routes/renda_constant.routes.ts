@@ -9,8 +9,27 @@ const createRendaConstant = new CreateRendaContantController()
 const readRendaContantController = new ReadRendaContantController()
 const totalRendaConstantController = new TotalRendaConstantController()
 
-rendaConstantRouter.post("/", createRendaConstant.handle)
-rendaConstantRouter.get("/", readRendaContantController.handle)
-rendaConstantRouter.get("/total", totalRendaConstantController.handle)
+rendaConstantRouter.post(
+    "/", 
+    /*
+        #swagger.description = 'Route for renda constant. you can insert an renda_constant'
+    */
+    createRendaConstant.handle
+)
+rendaConstantRouter.get(
+    "/",
+    /*
+        #swagger.description = 'Route for renda constant. you can get a list of renda_constant'
+    */
+    readRendaContantController.handle
+)
+
+rendaConstantRouter.get(
+    "/total", 
+    /*
+        #swagger.description = 'Route for renda constant. you can get a result of renda_constant'
+    */
+    totalRendaConstantController.handle
+)
 
 export {rendaConstantRouter}

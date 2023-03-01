@@ -1,5 +1,5 @@
 import {PersonDependentEmailUseCase}  from "./PersonDependentByEmailUseCase"
-import {PersonDependentRepository} from "../../infra/typeorm/repository/PersonDependetRepository"
+import {PersonDependentRepository} from "../createPersonDependent/PersonDependetRepository"
 
 const personDependentRepository = new PersonDependentRepository()
 

@@ -11,11 +11,17 @@ const readPersonController = new ReadPersonController()
 
 personRouter.post(
     "/",     
+    /*
+        #swagger.description = 'Route for person. you can insert the data of your person_dependent'
+    */
     createPersonController.handle
 )
 
 personRouter.get(
     "/",
+    /*
+        #swagger.description = 'Route for person_dependent. you can get person'
+    */
     ensureAuthenticated,
     readPersonController.handle
 )

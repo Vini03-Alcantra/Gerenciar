@@ -3,7 +3,7 @@ interface ICreateAccountConstantDTO {
     nameOriginAccount: string;
     valueAccount: number;
     tipoConta: string;
-    dateAccount?: string;
+    dateAccount: string;
 }
 
 export {ICreateAccountConstantDTO}
