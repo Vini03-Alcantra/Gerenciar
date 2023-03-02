@@ -8,14 +8,46 @@
   "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
-    "http"
+    "http",
+    "https"
   ],
   "paths": {
-    "/person/": {
+    "/person": {
       "post": {
+        "tags": ["person"],
         "description": "Route for person. you can insert the data of your person_dependent",
-        "parameters": [],
-        "responses": {}
+        "summary": "Create a new person",
+        "requestBody": {
+          "description": "Create a new person",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref":"#/components/schemas/Person"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema":{
+                  "$ref":"#/components/schemas/Person"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "person_auth": [
+                "write:pets",
+                "read:pets"
+            ]
+          }
+      ]
       },
       "get": {
         "description": "Route for person_dependent. you can get person",
@@ -166,6 +198,47 @@
         "description": "Route for user authentication.",
         "parameters": [],
         "responses": {}
+      }
+    }
+  },
+  "components": {
+    "schemas":{
+      "Person": {
+        "type": "object",
+        "properties": {
+          "namePerson": {
+            "type": "string",
+            "example": "Abel ferreira"
+          },
+          "agePerson":{
+            "type": "integer",
+            "example": "44"
+          },
+          "emailPerson": {
+            "type": "string",
+            "example": "abel.ferreira@palmeiras.com.br"
+          },
+          "birthday": {
+            "type": "string",
+            "example": "15/09/1978"
+          },
+          "cpf": {
+            "type": "string",
+            "example": "01224536622"
+          }
+        }
+      }
+    },
+    "requestBodies": {
+      "Person": {
+        "description": "Pet object that needs to be added to the store",
+        "content":{
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Person"
+            }
+          }
+        }
       }
     }
   }
