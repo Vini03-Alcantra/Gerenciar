@@ -1,14 +1,20 @@
-name: DemoNewCD
+name: GerenciarTest
 on:
-  workflow_dispatch:
+  push:
+    branches: ["*"]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Run a one-line script
-        run: echo Hello, world!
-
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+          with:
+            node-version: 16      
+      - run: npm ci
+      - run: npm run test
+      - run: npm run build
+      - run: npm run deploy
 
   deploy-dev:
     runs-on: ubuntu-latest
@@ -17,8 +23,14 @@ jobs:
       url: 'gerenciar.dev.com'
     needs: build
     steps:
-      - name: Run a one-line script
-        run: echo Deploy Dev
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+          with:
+            node-version: 16      
+      - run: npm ci
+      - run: npm run test
+      - run: npm run build
+      - run: npm run deploy
 
   deploy-hmg:
     runs-on: ubuntu-latest
@@ -27,8 +39,14 @@ jobs:
       url: 'gerenciar.dev.com'
     needs: deploy-dev
     steps:
-      - name: Run a one-line script
-        run: echo Deploy HMG
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+          with:
+            node-version: 16      
+      - run: npm ci
+      - run: npm run test
+      - run: npm run build
+      - run: npm run deploy
 
 
   deploy-prd:
@@ -38,5 +56,11 @@ jobs:
       url: 'gerenciar.dev.com'
     needs: deploy-hmg
     steps:
-      - name: Run a one-line script
-        run: echo Deploy PRD
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+          with:
+            node-version: 16      
+      - run: npm ci
+      - run: npm run test
+      - run: npm run build
+      - run: npm run deploy

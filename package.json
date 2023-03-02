@@ -8,7 +8,9 @@
     "dev": "ts-node-dev src/shared/infra/http/server.ts",
     "swagger-autogen": "ts-node-dev swagger.ts",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
-    "test": "jest"
+    "test": "jest",
+    "build": "echo \"Building running...\"",
+    "deploy": "echo \"Deploying new build to cloud server...\""
   },
   "dependencies": {
     "@abraham/reflection": "^0.8.0",
